@@ -7,14 +7,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter your name");
-            string name = Console.ReadLine();
-            Thread.Sleep(5000);
-            Console.WriteLine($"Hello, {name}!");
-            Thread.Sleep(5000);
-            Console.WriteLine($"Goodbye, {name}!");
-            Console.ReadKey();
-
+            Console.WriteLine("Enter value x");
+            var x = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter value y");
+            var y = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{x} + {y} = {x + y} ");
+            Console.WriteLine($"{x} - {y} = {x - y} ");
+            Console.WriteLine($"{x} * {y} = {x * y} ");
         }
+       
     }
 }
