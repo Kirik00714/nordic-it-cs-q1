@@ -15,6 +15,6 @@ namespace ConsoleApp1
             Console.WriteLine($"{x} - {y} = {x - y} ");
             Console.WriteLine($"{x} * {y} = {x * y} ");
         }
-       
+
     }
 }
