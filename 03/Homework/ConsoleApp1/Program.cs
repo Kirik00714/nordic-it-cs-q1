@@ -10,16 +10,16 @@ namespace ConsoleApp1
             string[] name = new string[3];
             for (int i = 0; i < name.Length; i++)
             {
-                int num = i + 1;
-                Console.Write($"{num}. name:  ");
+                
+                Console.Write($" {i+1}. Name:  ");
                 name[i] = Console.ReadLine();
 
             }
             int [] age = new int[3];
             for (int i = 0; i < age.Length; i++)
             {
-                int num = i + 1;
-                Console.Write($"{num}. age:  ");
+                
+                Console.Write($"{i+1} Age:  ");
                 age[i] = int.Parse(Console.ReadLine());
 
             }
@@ -28,6 +28,7 @@ namespace ConsoleApp1
                 
                 Console.WriteLine($"Name: {name[i]}, age in 4 years: {age[i] + 4}");
             }
+            Console.ReadKey();
         }
     }
 }
