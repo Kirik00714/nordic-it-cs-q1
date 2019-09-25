@@ -5,37 +5,83 @@ namespace ConsoleApp1
 {
     class Program
     {
-        static void Main(string[] args)
+        static double  Mert (string title)
         {
-            Console.WriteLine("Enter value x");
-            var x = double.Parse(Console.ReadLine());
-            Console.WriteLine("Enter operation sign");
-            var sign = char.Parse(Console.ReadLine());
-            Console.WriteLine("Enter value y");
-            var y = double.Parse(Console.ReadLine());
-            if (sign == '+')
+            while (true)
             {
-                Console.WriteLine($"{x} + {y} = {x + y}");
+                Console.WriteLine(title);
+                if (double.TryParse(Console.ReadLine(), out var Operand))
+                {
+                    return Operand;
+
+                }
+                Console.WriteLine("Wrong value");
             }
-            else if (sign == '-')
+        }
+
+        static char oper ()
+        {
+            while (true)
             {
-                Console.WriteLine($"{x} - {y} = {x - y}");
+                Console.WriteLine("Enter the operation: ");
+                var input = Console.ReadLine();
+                if (IsOperator (input))
+                {
+                    return input [0];
+                }
+                Console.WriteLine("Wrong operation");
             }
-            else if (sign == '*')
+        }
+
+        static bool IsOperator (string input)
+        {
+            var operation = new char[] { '+', '-', '*', '/', '%', '^'};
+
+            if(string.IsNullOrWhiteSpace (input))
             {
-                Console.WriteLine($"{x} * {y} = {x * y}");
+                return false;
             }
-            else if (sign == '/')
+
+            for (int i = 0; i < operation.Length; i++)
             {
-                Console.WriteLine($"{x} / {y} = {x / y}");
+                if (operation[i] == input[0])
+                {
+                return true;
+                }
             }
-            else if (sign == '%')
+            return false;
+             
+        }
+        static void Main()
+        {
+            var firstOperand = Mert("enter the first number ");
+            var secondOperand = Mert("enter the second number ");
+            var operation = oper();
+           
+
+            switch (operation)
             {
-                Console.WriteLine($"{x} % {y} = {x % y}");
-            }
-            else if (sign == '^')
-            {
-                Console.WriteLine($"{x} ^ {y} = {Math.Pow(x,y)}");
+                case '+':
+                    Console.WriteLine($"{firstOperand} + {secondOperand} = {firstOperand + secondOperand}");
+                    break;
+                case '-':
+                    Console.WriteLine($"{firstOperand} - {secondOperand} = {firstOperand - secondOperand}");
+                    break;
+                case '*':
+                    Console.WriteLine($"{firstOperand} * {secondOperand} = {firstOperand * secondOperand}");
+                    break;
+                case '/':
+                    Console.WriteLine($"{firstOperand} / {secondOperand} = {firstOperand / secondOperand}");
+                    break;
+                case '%':
+                    Console.WriteLine($"{firstOperand} % {secondOperand} = {firstOperand % secondOperand}");
+                    break;
+                case '^':
+                    Console.WriteLine($"{firstOperand} ^ {secondOperand} = {Math.Pow(firstOperand,secondOperand)}");
+                    break;
+                default:
+                    Console.WriteLine($"Wrong value");
+                    break;
             }
             Console.ReadKey();
         }
