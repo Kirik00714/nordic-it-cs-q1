@@ -29,20 +29,15 @@ namespace ConsoleApp1
              Color Favorite = 0;
             for (int i = 0; i < 4; i++)
             {
+
                 Favorite |= (Color)int.Parse(Console.ReadLine());
                 Console.WriteLine($"{ i + 1 } Color: {Favorite}");
             }
+         
+               
+            var allcolor = Color.Black |  Color.Blue | Color.Cyan | Color.Green | Color.Grey | Color.Magenta | Color.Red | Color.White | Color.Yellow;
             Color NoFavorite = 0;
-            for (int i = 0; i < 9; i++)
-            {
-                double num = Math.Pow(2, i);
-                if ((Favorite & (Color)num) != (Color)num)
-                {
-                    NoFavorite |= (Color)num; 
-                }
-            }
-
-
+            NoFavorite = allcolor ^ Favorite;
 
             Console.WriteLine($"Favorite color :{Favorite}");
             Console.WriteLine($"No favorite color :{NoFavorite}");
