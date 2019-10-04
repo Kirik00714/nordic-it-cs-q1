@@ -54,24 +54,25 @@ namespace ConsoleApp1
 			double sumweek = 0;
 			for (int i = 0; i < marks.Length; i++)
 			{
-				if (marks[i] == null)
-				{
-					//Console.WriteLine("N/A");
-					sum = 0;
-					
-				}
-				else
-				{
-					sum = 0;
-					for (int j = 0; j < marks[i].Length; j++)
-					{
-						sum += marks[i][j];
-						
-					}
-					sum /= marks[i].Length;
-					sumweek += sum;
-					
-				}
+                if (marks[i] != null)
+                {
+
+                    sum = 0;
+                    for (int j = 0; j < marks[i].Length; j++)
+                    {
+                        sum += marks[i][j];
+
+                    }
+                    sum /= marks[i].Length;
+                    sumweek += sum;
+                }
+
+
+                else
+                {
+
+                    Console.WriteLine("N/A");
+                }
 
 				
 				Console.WriteLine($"The averange mark for day #{i} is {sum }");
