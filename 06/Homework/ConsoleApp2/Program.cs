@@ -14,7 +14,7 @@ namespace ConsoleApp2
                 deposit = decimal.Parse(Console.ReadLine());
                 if (deposit < 0 )
                 {
-                    throw new Exception("The amount of the down paymen is not correct");
+                    throw new FormatException("The amount of the down paymen is not correct");
                 }
             }
             catch (FormatException exp)
@@ -30,7 +30,7 @@ namespace ConsoleApp2
                 income = decimal.Parse(Console.ReadLine());
                 if (income < 0)
                 {
-                    throw new Exception("The daily percentage of income is not correct");
+                    throw new FormatException("The daily percentage of income is not correct");
                 }
             }
             catch (FormatException exp)
@@ -46,7 +46,7 @@ namespace ConsoleApp2
                 storage = decimal.Parse(Console.ReadLine());
                 if (storage < 0)
                 {
-                    throw new Exception("The daily percentage of income is not correct");
+                    throw new FormatException("The daily percentage of income is not correct");
                 }
             }
             catch (FormatException exp)
