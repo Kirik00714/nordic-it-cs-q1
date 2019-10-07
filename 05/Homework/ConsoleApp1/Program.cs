@@ -21,6 +21,7 @@ namespace ConsoleApp1
             }
             Console.WriteLine("Please enter form:");
             int typeForm = default;
+            
                 try
                 {
                     typeForm = int.Parse(Console.ReadLine());
@@ -41,7 +42,8 @@ namespace ConsoleApp1
 
                     Console.WriteLine(exp.Message);
                     Console.WriteLine(exp.StackTrace);
-                }   
+                }
+            
             try
             {
                 switch (typeForm)
@@ -118,6 +120,7 @@ namespace ConsoleApp1
                 Console.WriteLine(rad.StackTrace);
             }
             Console.ReadKey();
+
         }
     }
 }
