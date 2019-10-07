@@ -21,26 +21,27 @@ namespace ConsoleApp1
             }
             Console.WriteLine("Please enter form:");
             int typeForm = default;
-            try
-            {
-                typeForm = int.Parse(Console.ReadLine());
-                if (typeForm < 1 || typeForm > 3)
+                try
                 {
-                    throw new ArgumentException(" Number don't not match form");
+                    typeForm = int.Parse(Console.ReadLine());
+                    if (typeForm < 1 || typeForm > 3)
+                    {
+                        throw new ArgumentException($" Number  don't not match form");
+
+                    }
                 }
-            }
-            catch (FormatException exp)
-            {
+                catch (FormatException exp)
+                {
 
-                Console.WriteLine(exp.Message);
-                Console.WriteLine(exp.StackTrace);
-            }
-            catch (OverflowException exp)
-            {
+                    Console.WriteLine(exp.Message);
+                    Console.WriteLine(exp.StackTrace);
+                }
+                catch (ArgumentException exp)
+                {
 
-                Console.WriteLine(exp.Message);
-                Console.WriteLine(exp.StackTrace);
-            }
+                    Console.WriteLine(exp.Message);
+                    Console.WriteLine(exp.StackTrace);
+                }   
             try
             {
                 switch (typeForm)
@@ -54,13 +55,13 @@ namespace ConsoleApp1
                             radius = diameter / 2;
                             if (radius < 0)
                             {
-                                throw new FormatException("The radous must be greated than 0");
+                                throw new ArgumentException("The radous must be greated than 0");
                             }
                             
-                            var Area = Math.PI * Math.Pow(radius, 2);
-                            var Perimetr = 2 * Math.PI * radius;
-                            Console.WriteLine($"Area of a circle: {Area}");
-                            Console.WriteLine($"Circle perimeter: {Perimetr}");
+                            var area = Math.PI * Math.Pow(radius, 2);
+                            var perimetr = 2 * Math.PI * radius;
+                            Console.WriteLine($"Area of a circle: {area}");
+                            Console.WriteLine($"Circle perimeter: {perimetr}");
 
                         }
                         break;
@@ -72,12 +73,12 @@ namespace ConsoleApp1
                             longside = double.Parse(Console.ReadLine());
                             if (longside < 0)
                             {
-                                throw new FormatException("The radous must be greated than 0");
+                                throw new ArgumentException("The radous must be greated than 0");
                             }
-                            var Area = (Math.Sqrt(3) / 4) * Math.Pow(longside, 2);
-                            var Perimetr = 3 * longside;
-                            Console.WriteLine($"Area of an equilateral triangle: {Area}");
-                            Console.WriteLine($"Perimeter of an equilateral triangle: {Perimetr}");
+                            var area = (Math.Sqrt(3) / 4) * Math.Pow(longside, 2);
+                            var perimetr = 3 * longside;
+                            Console.WriteLine($"Area of an equilateral triangle: {area}");
+                            Console.WriteLine($"Perimeter of an equilateral triangle: {perimetr}");
                         }
                         break;
                     case 3:
@@ -89,18 +90,18 @@ namespace ConsoleApp1
                             longside = double.Parse(Console.ReadLine());
                             if (longside < 0)
                             {
-                                throw new FormatException("The radous must be greated than 0");
+                                throw new ArgumentException("The radous must be greated than 0");
                             }
                             Console.WriteLine("Enter the height of the side:");
                             heightside = double.Parse(Console.ReadLine());
                             if (heightside < 0)
                             {
-                                throw new FormatException("The radous must be greated than 0");
+                                throw new ArgumentException("The radous must be greated than 0");
                             }
-                            var Area = longside * heightside;
-                            var Perimetr = 2 * longside + 2 * heightside;
-                            Console.WriteLine($"The area of a rectangle: {Area}");
-                            Console.WriteLine($"The perimeter of the rectangle: {Perimetr}");
+                            var area = longside * heightside;
+                            var perimetr = 2 * longside + 2 * heightside;
+                            Console.WriteLine($"The area of a rectangle: {area}");
+                            Console.WriteLine($"The perimeter of the rectangle: {perimetr}");
                         }
                         break;
                 }
@@ -110,7 +111,7 @@ namespace ConsoleApp1
                 Console.WriteLine(rad.Message);
                 Console.WriteLine(rad.StackTrace);
             }
-            catch (OverflowException rad)
+            catch (ArgumentException rad)
             {
 
                 Console.WriteLine(rad.Message);
