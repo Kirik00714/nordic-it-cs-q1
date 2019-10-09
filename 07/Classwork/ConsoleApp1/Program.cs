@@ -33,6 +33,7 @@ namespace ConsoleApp1
             words1 = words1.Substring(0, index);
             words1 = words1.TrimEnd();
             Console.WriteLine(words1);
+            Console.ReadKey();
             */
 
             
