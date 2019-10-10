@@ -36,7 +36,7 @@ namespace ConsoleApp1
             Console.ReadKey();
             */
 
-            
+            /*
             var text = new StringBuilder ("    lorem   ipsum   dolor      sit   amet  ");
             text.Remove(0, 4);
             text.Remove(5, 2);
@@ -46,12 +46,17 @@ namespace ConsoleApp1
             text.Remove(25, 0);
             text.Replace("ipsum", "IPSUM");
             Console.WriteLine(text.ToString());
-
+            
             var str = text.Remove(21, 7);
             text.Replace("IPSUM", "ipsum");
             Console.WriteLine(str.ToString());
             Console.ReadKey();
-			
-		}
+            */
+            string text = "    lorem   ipsum   dolor      sit   amet  ";
+            var words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            
+            Console.WriteLine(words);
+            Console.ReadKey();
+        }
 	}
 }
