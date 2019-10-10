@@ -29,12 +29,12 @@ namespace ConsoleApp1
                         count++; ;
                     }
                 }
+                Console.WriteLine("Press any key to exit");
+                Console.ReadKey();
             }
             catch (ArgumentException wd)
             {
-
                 Console.WriteLine(wd.Message);
-                
             }
         }
     }
