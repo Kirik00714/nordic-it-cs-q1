@@ -7,32 +7,37 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter string:");
-            var word = Console.ReadLine();
-            try
+            while (true)
             {
-                foreach (var err in word)
+                var word = Console.ReadLine();
+                try
                 {
-                    if (err == '1' || err == '2' || err == '3' || err == '4' || err == '5' || err == '6' || err == '7' || err == '8' || err == '9' || err == '0')
+                    
+                    foreach (var err in word)
                     {
-                        throw new ArgumentException();
+                        if (err == '1' || err == '2' || err == '3' || err == '4' || err == '5' || err == '6' || err == '7' || err == '8' || err == '9' || err == '0')
+                        {
+                            throw new ArgumentException();
+                        }
                     }
+                    if (word == "")
+                    {
+                        Console.WriteLine("You  entered an empty string");
+                    }
+                    for (int i = word.Length - 1; i >= 0; i--)
+                    {
+                        Console.Write(word[i]);
+                    }
+                    Console.WriteLine("\nPress ane key to exit");
+                    Console.ReadKey();
+                    break;
                 }
-                if (word == " ")
+                catch (ArgumentException wd)
                 {
-                    Console.WriteLine("You  entered an empty string");
-                }
-                for (int i = word.Length -1; i >= 0; i--)
-                {
-                    Console.WriteLine(word[i]);
-                }
-                Console.WriteLine("\nPress ane key to exit");
-                Console.ReadKey();
-            }
-            catch (ArgumentException wd)
-            {
 
-                Console.WriteLine(wd.Message);
+                    Console.WriteLine(wd.Message);
 
+                }
             }
         }
     }
