@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ConsoleApp1
@@ -7,7 +8,7 @@ namespace ConsoleApp1
 	{
 		static void Main(string[] args)
 		{
-			/*
+            /*
 			Console.WriteLine("Enter numbers");
 			var numbers = new List<double>();
 			double result = 0;
@@ -42,7 +43,7 @@ namespace ConsoleApp1
 			Console.WriteLine(result);
 			Console.ReadKey();
 			*/
-			/*
+            /*
 			var capitals = new Dictionary<string, string>
 			{
 				["Russia"] = "Moscow",
@@ -69,7 +70,7 @@ namespace ConsoleApp1
 			
 			Console.ReadKey();
 			*/
-
+            /*
 			Console.WriteLine("Enter number:");
 			Queue<double> numbers = new Queue<double>();
 			while (true)
@@ -94,12 +95,43 @@ namespace ConsoleApp1
 					numbers.Enqueue(int.Parse(value));
 				}
 			}
+            */
+
+            Stack<int> dish = new Stack<int>();
+            Console.WriteLine("Enter <wash> to put the plate");
+            Console.WriteLine("Enter <dry> to take the plate ");
+            Console.WriteLine("Enter <exit> to exit ");
+            while (true)
+            {
+                var value = Console.ReadLine();
+                if (value == "wash")
+                {
+                    dish.Push(1);
+                     
+                }
+                else if (value == "dry")
+                {
+                    if(dish.Count > 0)
+                    {
+                        dish.Pop();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No plates");
+                    }
+                    
+                }
+                else if (value == "exit")
+                {
+                    break;
+                }
+                Console.WriteLine($"Plates in a pile to wipe: {dish.Count}");
+            }
 
 
 
 
-
-		}
+        }
 		/*
 		private static KeyValuePair<string, string> GetRandomElement(Dictionary<string, string> capitals)
 		{
