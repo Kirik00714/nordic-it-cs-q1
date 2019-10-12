@@ -9,7 +9,7 @@ namespace ConsoleApp2
             Console.WriteLine("Please enter string:");
             while (true)
             {
-                var word = Console.ReadLine();
+                var word = Console.ReadLine().ToLower();
                 try
                 {
                     
