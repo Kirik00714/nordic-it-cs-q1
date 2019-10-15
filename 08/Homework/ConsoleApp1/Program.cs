@@ -7,57 +7,49 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Queue<string> bracket = new Queue<string>();
-            int count = default;
-            var value = Console.ReadLine();
-            while (true)
+            Console.WriteLine("Enter a string containing parenthese. For exemple '(', ')', '[', ']', '{', '}' ");
+            Stack<char> bracket = new Stack<char>();
+            Stack<char> bracket1 = new Stack<char>();
+            Stack<char> bracket2 = new Stack<char>();
+
+            var str = Console.ReadLine();
+            
+            foreach (var ch in str)
             {
-
-                bracket.Enqueue((value));
-                if (value == "go")
-                {
-                    count = Outputbracket(count, value);
-
-                    if (count == 0)
-                    {
-                        Console.WriteLine(true);
-                    }
-                    else
-                    {
-                        Console.WriteLine(false);
-                    }
-
-                }
+                CountingBracket(bracket, ch);
+                
             }
+            
+            if (bracket.Count == 0 && bracket1.Count == 0 && bracket2.Count == 0)
+            {
+                Console.WriteLine(true); 
+            }
+            else
+            {
+                Console.WriteLine(false); 
+            }
+            
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
 
-        static int Outputbracket(int count, string value)
+        static void CountingBracket(Stack<char> bracket, char ch)
         {
-
-            while (true)
+            if (ch == '(')
             {
-                if (value == "(")
+                bracket.Push(ch);
+            }
+            else if (ch == ')')
+            {
+                if (bracket.Count == 0)
                 {
-                    count++;
+                    Console.WriteLine(false);
                 }
-                else if (value == ")")
+                else
                 {
-                    count--;
+                    bracket.Pop();
                 }
-
-                return count;
             }
         }
-       
-        
-
-
-
-        
-
-         
-        
-       
-        
     }
 }
