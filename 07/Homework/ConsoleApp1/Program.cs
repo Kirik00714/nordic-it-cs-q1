@@ -9,24 +9,23 @@ namespace ConsoleApp1
             while (true)
             {
                 Console.WriteLine("Please enter string:");
-                var word = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string str = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(str))
+                {
+                    Console.WriteLine("Empty string");
+                    continue;
+                }
+                var words = str.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 try
                 {
-                    foreach (var err in word)
+                    if (words.Length <= 1)
                     {
-                        if (err[0] == '1' || err[0] == '2' || err[0] == '3' || err[0] == '4' || err[0] == '5' || err[0] == '6' || err[0] == '7' || err[0] == '8' || err[0] == '9' || err[0] == '0')
-                        {
-                            throw new ArgumentException();
-                        }
-                    }
-                    if (word.Length <= 1)
-                    {
-                        Console.WriteLine("You have entered too few words");
+                        throw new ArgumentException("You have entered too few words");
                     }
                     int count = default;
-                    foreach (var words in word)
+                    foreach (var word in words)
                     {
-                        if (words[0] == 'A' || words[0] == 'a' || words[0] == 'А' || words[0] == 'а')
+                        if (word[0] == 'A' || word[0] == 'a' || word[0] == 'А' || word[0] == 'а')
                         {
                             count++; ;
                         }
