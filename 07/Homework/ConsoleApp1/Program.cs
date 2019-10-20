@@ -35,7 +35,6 @@ namespace ConsoleApp1
                     Console.ReadKey();
                     break;
                 }
-
                 catch (ArgumentException wd)
                 {
                     Console.WriteLine(wd.Message);
