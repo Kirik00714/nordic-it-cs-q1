@@ -7,8 +7,13 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {   
-            Console.WriteLine("Enter a string containing parenthese. For exemple '(', ')', '[', ']', '{', '}'");
-            var str = Console.ReadLine();
+            Console.WriteLine("Enter a string containing parenthese. For exemple '(', ')', '[', ']'");
+            string str;
+            do
+            {
+                str = Console.ReadLine();
+            }
+            while (string.IsNullOrWhiteSpace(str));
             Console.WriteLine(CountBracket(str));
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
@@ -16,34 +21,35 @@ namespace ConsoleApp1
 
          static bool CountBracket(string line)
          {
-            Stack<char> bracket = new Stack<char>();
+            Stack<char> brackets = new Stack<char>();
            
             foreach (var ch in line)
             {
-                if (ch == '(')
+                if (ch == '(' || ch == '[')
                 {
-                    bracket.Push(ch);
+                    brackets.Push(ch);
                     
                 }
-                else if (ch == ')')
+                else if (ch == ')' || ch == ']')
                 {
-                    if (bracket.Count == 0 || bracket.Peek() != ')' )
+                    if (brackets.Count == 0 || (brackets.Peek() != '(' || ch == '['))
                     {
                         return false;
                         
                     }
+                    
                     else
                     {
-                        bracket.Pop();
+                        brackets.Pop();
                         
                     }
                 }
             }
-            if (bracket.Count == 0)
+            if (brackets.Count == 0)
             {
                 return true;
             }
-            return bracket.Count == 0;
+            return brackets.Count == 0;
             
          }
 
