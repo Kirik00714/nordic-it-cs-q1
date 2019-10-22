@@ -7,30 +7,24 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter string:");
-            while (true)
+            
+            string str;
+            do
             {
-                string str = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(str))
-                {
-                    Console.WriteLine("Empty string");
-                    continue;
-                }
-                var word = str.ToLower();
-               
-                if (word == "")
-                {
-                    Console.WriteLine("You  entered an empty string");
-                }
-                for (int i = word.Length - 1; i >= 0; i--)
-                {
-                    Console.Write(word[i]);
-                }
-                Console.WriteLine("\nPress ane key to exit");
-                Console.ReadKey();
-                break;
+                str = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(str));
                 
-                
+            
+            var word = str.ToLower();
+            char[] symbols = word.ToCharArray();
+            string finalword = default;
+            for (int i = symbols.Length - 1; i >= 0; i--)
+            {
+                finalword += char.ToString(symbols[i]);
             }
+            Console.WriteLine(finalword);
+            Console.WriteLine("Press ane key to exit");
+            Console.ReadKey();
         }
     }
 }
