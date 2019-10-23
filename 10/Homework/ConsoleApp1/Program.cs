@@ -11,7 +11,7 @@ namespace ConsoleApp1
         public int AfterFourYears
             => Age + 4;
         
-        public string GetDescription
+        public string Description
             => $"Name: {Name}, age in 4 years: {AfterFourYears}.";
 
 
@@ -24,21 +24,48 @@ namespace ConsoleApp1
             var people = new Human[3];
             for (int i = 0; i < people.Length; i++)
             {
-                Console.Write($" {i + 1}. Name:");
-                people[i] = new Human
+                while (true)
                 {
-                    Name = Console.ReadLine()
-                };
+                    Console.Write($" {i + 1}. Name:");
+                    people[i] = new Human
+                    {
 
-                Console.Write($" {i + 1}. Age:");
-                people[i] = new Human
+                        Name = Console.ReadLine()
+                    };
+                    if (!string.IsNullOrWhiteSpace(people[i].Name))
+                    {
+                        
+                        break;
+                    }
+                    Console.WriteLine("ERROR");
+                    Console.WriteLine("Enter again");
+                }
+
+                while (true)
                 {
-                    Age = int.Parse(Console.ReadLine())
-                }; 
+                    Console.Write($" {i + 1}. Age:");
+                    people[i] = new Human
+                    {
+                        Age = int.Parse(Console.ReadLine())
+                    };
+                    if (people[i].Age > 0)
+                    {
+                        
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("ERROR");
+                        Console.WriteLine("Enter again");
+                    }
+                    
+                }
+                
+
             }
             for (int i = 0; i < people.Length; i++)
             {
-                Console.WriteLine(people[i].GetDescription);
+                Console.WriteLine(people[i].Description);
             }
             
             Console.WriteLine("Press any key to exit...");
