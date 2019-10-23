@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ConsoleApp2
 {
@@ -11,18 +12,17 @@ namespace ConsoleApp2
             string str;
             do
             {
-                str = Console.ReadLine();
+                str = Console.ReadLine().ToLower();
             } while (string.IsNullOrWhiteSpace(str));
-                
-            
-            var word = str.ToLower();
-            char[] symbols = word.ToCharArray();
-            string finalword = default;
-            for (int i = symbols.Length - 1; i >= 0; i--)
+
+            var inputLine = new StringBuilder(str);
+            var outputLine = new StringBuilder();
+            for (int i = inputLine.Length - 1; i >= 0; i--)
             {
-                finalword += char.ToString(symbols[i]);
+                
+                 outputLine.Append(str[i]);
             }
-            Console.WriteLine(finalword);
+            Console.WriteLine(outputLine);
             Console.WriteLine("Press ane key to exit");
             Console.ReadKey();
         }
