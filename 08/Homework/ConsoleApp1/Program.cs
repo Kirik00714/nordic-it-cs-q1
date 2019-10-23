@@ -32,12 +32,11 @@ namespace ConsoleApp1
                 }
                 else if (ch == ')' || ch == ']')
                 {
-                    if (brackets.Count == 0 || (brackets.Peek() != '(' || ch == '['))
+                    if (brackets.Count == 0 || (brackets.Peek() != '(' || brackets.Peek() != '['))
                     {
                         return false;
                         
                     }
-                    
                     else
                     {
                         brackets.Pop();
@@ -45,16 +44,7 @@ namespace ConsoleApp1
                     }
                 }
             }
-            if (brackets.Count == 0)
-            {
-                return true;
-            }
-            return brackets.Count == 0;
-            
+            return brackets.Count == 0; 
          }
-
     }
-
-
-
 }
