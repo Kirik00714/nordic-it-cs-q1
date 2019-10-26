@@ -2,33 +2,6 @@
 
 namespace ConsoleApp1
 {
-    class Human
-    {
-
-        public string Name;
-        public  int age;
-        public int Age
-        {
-            get
-            {
-                return age;
-            }
-            set
-            {
-                if (value >= 0)
-                {
-                    age = value;
-                }
-            }
-        }
-        public int AfterFourYears
-            => age + 4;
-        
-        public string Description
-            => $"Name: {Name}, age in 4 years: {AfterFourYears}.";
-
-
-    }
     class Program
     {
         static void Main(string[] args)
@@ -45,7 +18,6 @@ namespace ConsoleApp1
                     
                     if (!string.IsNullOrWhiteSpace(people[i].Name))
                     {
-                        
                         break;
                     }
                     Console.WriteLine("ERROR");
@@ -59,7 +31,6 @@ namespace ConsoleApp1
                     
                     if (people[i].age > 0)
                     {
-                        
                         break;
                     }
                     else
