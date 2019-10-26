@@ -6,10 +6,23 @@ namespace ConsoleApp1
     {
 
         public string Name;
-        public  int Age;
-        
+        public  int age;
+        public int Age
+        {
+            get
+            {
+                return age;
+            }
+            set
+            {
+                if (value >= 0)
+                {
+                    age = value;
+                }
+            }
+        }
         public int AfterFourYears
-            => Age + 4;
+            => age + 4;
         
         public string Description
             => $"Name: {Name}, age in 4 years: {AfterFourYears}.";
@@ -24,14 +37,12 @@ namespace ConsoleApp1
             var people = new Human[3];
             for (int i = 0; i < people.Length; i++)
             {
+                people[i] = new Human();
                 while (true)
                 {
                     Console.Write($" {i + 1}. Name:");
-                    people[i] = new Human
-                    {
-
-                        Name = Console.ReadLine()
-                    };
+                    people[i].Name = Console.ReadLine();
+                    
                     if (!string.IsNullOrWhiteSpace(people[i].Name))
                     {
                         
@@ -44,11 +55,9 @@ namespace ConsoleApp1
                 while (true)
                 {
                     Console.Write($" {i + 1}. Age:");
-                    people[i] = new Human
-                    {
-                        Age = int.Parse(Console.ReadLine())
-                    };
-                    if (people[i].Age > 0)
+                    people[i].age = int.Parse(Console.ReadLine());
+                    
+                    if (people[i].age > 0)
                     {
                         
                         break;
