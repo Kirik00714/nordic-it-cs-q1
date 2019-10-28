@@ -6,7 +6,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            ReminderItem reminderItem = new ReminderItem(new DateTime(2019, 10, 28, 16, 52, 30), "Good morning! Time to get up!")
+            ReminderItem reminderItem = new ReminderItem(new DateTime(2019, 10, 29, 16, 52, 30), "Good morning! Time to get up!")
             {
             };
             reminderItem.WriteProperties();

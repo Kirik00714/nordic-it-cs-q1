@@ -18,14 +18,7 @@ namespace ConsoleApp1
         {
             get
             {
-                if (TimeToAlarm >= TimeSpan.Zero)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return TimeToAlarm >= TimeSpan.Zero;
             }
         }
         public void WriteProperties()
