@@ -10,6 +10,9 @@ namespace ConsoleApp1
             {
             };
             reminderItem.WriteProperties();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }
