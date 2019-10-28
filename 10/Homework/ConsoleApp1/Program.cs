@@ -14,6 +14,7 @@ namespace ConsoleApp1
                 while (true)
                 {
                     Console.Write($" {i + 1}. Name:");
+
                     people[i].Name = Console.ReadLine();
                     
                     if (!string.IsNullOrWhiteSpace(people[i].Name))
@@ -27,21 +28,26 @@ namespace ConsoleApp1
                 while (true)
                 {
                     Console.Write($" {i + 1}. Age:");
-                    people[i].age = int.Parse(Console.ReadLine());
-                    
-                    if (people[i].age > 0)
+                    try
                     {
-                        break;
+                       
+                       people[i].age = int.Parse(Console.ReadLine());
+                        if (people[i].age > 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("ERROR");
+                            Console.WriteLine("Enter again");
+                        }
                     }
-                    else
+                    catch (FormatException)
                     {
                         Console.WriteLine("ERROR");
                         Console.WriteLine("Enter again");
                     }
-                    
                 }
-                
-
             }
             for (int i = 0; i < people.Length; i++)
             {
