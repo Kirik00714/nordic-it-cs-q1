@@ -13,18 +13,14 @@ namespace ConsoleApp2
 
             for (int i = 0; i < Documents.Length; i++)
             {
-                if (Documents[i] is Passport)
+                if (Documents[i] is Passport passport)
                 {
-                    Passport passport = (Passport)Documents[i];
                     passport.ChangeIssueDate(DateTime.Now);
                     Documents[i].IssueDate = passport.IssueDate;
-
                 }
                 Documents[i].WriteToConsole();
                 Console.WriteLine("");
             }
-
-
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
