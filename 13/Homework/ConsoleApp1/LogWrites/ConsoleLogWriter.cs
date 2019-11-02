@@ -6,18 +6,18 @@ namespace ConsoleApp1
     {
         public override void LogInfo(string message)
         {
-            base.LogInfo(message);
-            Console.WriteLine(Message);
+
+            Console.WriteLine(OutputMessage(message));
         }
         public override void LogWarning(string message)
         {
-            base.LogWarning(message);
-            Console.WriteLine(Message);
+
+            Console.WriteLine(OutputMessage(message));
         }
         public override void LogError(string message)
         {
-            base.LogError(message);
-            Console.WriteLine(Message);
+
+            Console.WriteLine(OutputMessage(message));
         }
     }
 }

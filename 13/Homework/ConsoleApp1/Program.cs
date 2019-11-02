@@ -17,7 +17,7 @@ namespace ConsoleApp1
             consolelogwriter.LogWarning("Message for Warning");
             consolelogwriter.LogError("Message for Error");
             Console.WriteLine("");
-            var miltipleogriter = new MiltipleLogWriter(filelogwriter , consolelogwriter );
+            var miltipleogriter = new MiltipleLogWriter(filelogwriter,consolelogwriter);
             miltipleogriter.LogInfo("Message for Info");
             miltipleogriter.LogWarning("Message for Warning");
             miltipleogriter.LogError("Message for Error");

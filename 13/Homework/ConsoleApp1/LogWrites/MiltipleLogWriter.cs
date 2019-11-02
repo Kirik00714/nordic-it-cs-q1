@@ -17,9 +17,9 @@ namespace ConsoleApp1
 
         public override void LogInfo(string message)
         {
-            filewriter.LogInfo(message);
-            consolewriter.LogInfo(message);
-            
+            filewriter.LogWarning(message);
+            consolewriter.LogWarning(message);
+
         }
         public override void LogWarning(string message)
         {
