@@ -5,37 +5,33 @@ namespace ConsoleApp1
 {
     class MiltipleLogWriter : AbstractLogWriter, ILogWriter
     {
-        public MiltipleLogWriter(string infoMessage, string warningMessage, string errorMessage)
+        public MiltipleLogWriter(FileLogWriter filewriter, ConsoleLogWriter consolewriter)
         {
-            InfoMessage = infoMessage;
-            WarningMessage = warningMessage;
-            ErrorMessage = errorMessage;
+            this.filewriter = filewriter;
+            this.consolewriter = consolewriter;
         }
 
-        public string InfoMessage { get; set; }
-        public string WarningMessage { get; set; }
-        public string ErrorMessage { get; set; }
+        public  FileLogWriter filewriter { get; set; }
+        public  ConsoleLogWriter consolewriter { get; set; }
+        
 
         public override void LogInfo(string message)
         {
-            base.LogInfo(message);
-            Console.WriteLine(Message);
-            File.AppendAllText(@"C:\Users\Андрей\Desktop\File.txt", Message);
+            filewriter.LogInfo(message);
+            consolewriter.LogInfo(message);
             
         }
         public override void LogWarning(string message)
         {
-            base.LogWarning(message);
-            Console.WriteLine(Message);
-            File.AppendAllText(@"C:\Users\Андрей\Desktop\File.txt", Message);
-            
+            filewriter.LogWarning(message);
+            consolewriter.LogWarning(message);
+
         }
         public override void LogError(string message)
         {
-            base.LogError(message);
-            Console.WriteLine(Message);
-            File.AppendAllText(@"C:\Users\Андрей\Desktop\File.txt", Message);
-            
+            filewriter.LogError(message);
+            consolewriter.LogError(message);
+
         }
 
     }
