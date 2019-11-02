@@ -3,8 +3,8 @@
     class Human
     {
 
-        public string Name;
-        public  int age;
+        public  string Name;
+        private int age;
         public int Age
         {
             get

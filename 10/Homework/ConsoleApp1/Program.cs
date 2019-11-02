@@ -31,8 +31,8 @@ namespace ConsoleApp1
                     try
                     {
                        
-                       people[i].age = int.Parse(Console.ReadLine());
-                        if (people[i].age > 0)
+                       people[i].Age = int.Parse(Console.ReadLine());
+                        if (people[i].Age > 0)
                         {
                             break;
                         }
