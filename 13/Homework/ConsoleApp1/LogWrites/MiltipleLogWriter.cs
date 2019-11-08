@@ -1,38 +1,36 @@
 ﻿using System;
-using System.IO;
+
 
 namespace ConsoleApp1
 {
-    class MiltipleLogWriter : AbstractLogWriter, ILogWriter
+    class MiltipleLogWriter : ILogWriter
     {
-        public MiltipleLogWriter(ILogWriter filewriter, ILogWriter consolewriter)
+        public MiltipleLogWriter( params ILogWriter[] ilogwriters)
         {
-            this.filewriter = filewriter;
-            this.consolewriter = consolewriter;
+            this.ilogwriters = ilogwriters;
         }
-
-        private ILogWriter filewriter { get; set; }
-        private ILogWriter consolewriter { get; set; }
-        public override void LogInfo(string message)
+        private readonly ILogWriter[] ilogwriters;
+       
+        public  void LogInfo(string message)
         {
-            filewriter.LogInfo(message);
-            consolewriter.LogInfo(message);
-
+            foreach (var ilogwriter in ilogwriters)
+            {
+                ilogwriter.LogInfo(message);
+            }
         }
-        public override void LogWarning(string message)
+        public  void LogWarning(string message)
         {
-            filewriter.LogWarning(message);
-            consolewriter.LogWarning(message);
-
+            foreach (var ilogwriter in ilogwriters)
+            {
+                ilogwriter.LogWarning(message);
+            }
         }
-        public override void LogError(string message)
+        public  void LogError(string message)
         {
-            filewriter.LogError(message);
-            consolewriter.LogError(message);
-
+            foreach (var ilogwriter in ilogwriters)
+            {
+                ilogwriter.LogError(message);
+            }
         }
-
-
-
     }
 }

@@ -4,23 +4,18 @@ namespace ConsoleApp1
 {
     abstract class AbstractLogWriter : ILogWriter
     {
-        
-        public virtual void LogInfo(string message)
-        {
-            OutputMessage( message);
-        }
-        public virtual void LogWarning(string message)
-        {
-            OutputMessage(message);
-        }
-        public virtual  void LogError(string message)
-        {
-            OutputMessage(message);
-        }
-        public virtual string OutputMessage(string message)
-        {
-            return  $"{DateTime.Now}  Info:   {message}";
-        }
 
+        public  void LogInfo(string message) => 
+            LogMessage(message, "Info");
+        public  void LogWarning(string message) => 
+            LogMessage(message, "Warning");
+        public  void LogError(string message) => 
+            LogMessage(message, "Error");
+        protected  string OutputMessage(string message, string type) => 
+            $"{DateTime.Now}  {type}:   {message}";
+        protected abstract void WriteMessage (string line);
+
+        protected   void LogMessage(string message, string type) => 
+            WriteMessage(OutputMessage(message, type));
     }
 }

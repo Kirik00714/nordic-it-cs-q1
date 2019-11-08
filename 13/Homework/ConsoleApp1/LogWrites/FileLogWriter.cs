@@ -4,34 +4,17 @@ namespace ConsoleApp1
 {
     class FileLogWriter : AbstractLogWriter, ILogWriter 
     {
-        private readonly StreamWriter _writer;
+        private readonly string _writer;
 
-        public  FileLogWriter(string logFileName)
+        public  FileLogWriter(string filename)
         {
-            LogFileName = logFileName;
-            _writer = File.AppendText(logFileName);
+            _writer = filename;
         }
 
         public  string LogFileName { get; }
 
-        public override void LogInfo(string message)
-        {
-            
-            _writer.WriteLine(OutputMessage(message));
-            _writer.Flush();
-        }
-        public override void LogWarning(string message)
-        {
-            
-            _writer.WriteLine(OutputMessage(message));
-            _writer.Flush();
-        }
-        public override void LogError(string message)
-        {
-            
-            _writer.WriteLine(OutputMessage(message));
-            _writer.Flush();
-        }
-        
+        protected override void WriteMessage(string line) => 
+            File.AppendAllText(_writer, line);
+
     }
 }

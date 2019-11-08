@@ -7,7 +7,9 @@ namespace ConsoleApp1
     
         static void Main(string[] args)
         {
-            var filelogwriter = new FileLogWriter("File.txt");
+            Console.WriteLine("Enter a file name");
+            var filename = Console.ReadLine();
+            var filelogwriter = new FileLogWriter(filename);
             filelogwriter.LogInfo("Message for Info");
             filelogwriter.LogWarning("Message for Warning");
             filelogwriter.LogError("Message for Error") ;
@@ -17,7 +19,7 @@ namespace ConsoleApp1
             consolelogwriter.LogWarning("Message for Warning");
             consolelogwriter.LogError("Message for Error");
             Console.WriteLine("");
-            var miltipleogriter = new MiltipleLogWriter(filelogwriter,consolelogwriter);
+            var miltipleogriter = new MiltipleLogWriter(consolelogwriter, filelogwriter);
             miltipleogriter.LogInfo("Message for Info");
             miltipleogriter.LogWarning("Message for Warning");
             miltipleogriter.LogError("Message for Error");
