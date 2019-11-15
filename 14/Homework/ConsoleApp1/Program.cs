@@ -6,21 +6,20 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a file name");
-            var filename = Console.ReadLine();
-            var filelogwriter = FileLogWriter.GetInstance(filename);
+            var filelogwriter = FileLogWriter.GetInstance;
+            filelogwriter.Filename = "File.txt";
             filelogwriter.LogInfo("Message for Info");
             filelogwriter.LogWarning("Message for Warning");
             filelogwriter.LogError("Message for Error");
 
-            var consolelogwriter = ConsoleLogWriter.GetInstance();
+            var consolelogwriter = ConsoleLogWriter.GetInstance;
             consolelogwriter.LogInfo("Message for Info");
             consolelogwriter.LogWarning("Message for Warning");
             consolelogwriter.LogError("Message for Error");
 
             Console.WriteLine("");
 
-            var miltipleogriter = MiltipleLogWriter.GetInstance(consolelogwriter, filelogwriter);
+            var miltipleogriter = new MiltipleLogWriter(consolelogwriter, filelogwriter);
             miltipleogriter.LogInfo("Message for Info");
             miltipleogriter.LogWarning("Message for Warning");
             miltipleogriter.LogError("Message for Error");

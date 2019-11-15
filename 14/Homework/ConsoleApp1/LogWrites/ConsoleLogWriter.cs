@@ -8,10 +8,13 @@ namespace ConsoleApp1
         private static ConsoleLogWriter instance; 
         private ConsoleLogWriter()
         { }
-        public static ConsoleLogWriter GetInstance()
+        public static ConsoleLogWriter GetInstance
         {
-            return instance ??
+            get
+            {
+                return instance ??
                 (instance = new ConsoleLogWriter());
+            }
         }
         protected override void WriteMessage(string line) =>
             Console.WriteLine(line);

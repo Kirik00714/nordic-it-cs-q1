@@ -7,22 +7,17 @@ namespace ConsoleApp1
         private static FileLogWriter instance;
         private FileLogWriter()
         { }
-        public static FileLogWriter GetInstance( string filename)
+        public static FileLogWriter GetInstance
         {
-            return instance ??
-                (instance = new FileLogWriter());
+            get
+            {
+                return instance ??
+                    (instance = new FileLogWriter());
+            }
         }
-        private readonly string _writer;
-
-        public FileLogWriter(string filename)
-        {
-            _writer = filename;
-        }
-
-        public string LogFileName { get; }
-
+        public string Filename;
         protected override void WriteMessage(string line) =>
-            File.AppendAllText(_writer, line);
+            File.AppendAllText(Filename, line);
 
     }
 }
