@@ -4,27 +4,27 @@
     {
         public MiltipleLogWriter(params ILogWriter[] ilogwriters)
         {
-            this.ilogwriters = ilogwriters;
+            this._ilogwriters = ilogwriters;
         }
-        private readonly ILogWriter[] ilogwriters;
+        private readonly ILogWriter[] _ilogwriters;
 
         public void LogInfo(string message)
         {
-            foreach (var ilogwriter in ilogwriters)
+            foreach (var ilogwriter in _ilogwriters)
             {
                 ilogwriter.LogInfo(message);
             }
         }
         public void LogWarning(string message)
         {
-            foreach (var ilogwriter in ilogwriters)
+            foreach (var ilogwriter in _ilogwriters)
             {
                 ilogwriter.LogWarning(message);
             }
         }
         public void LogError(string message)
         {
-            foreach (var ilogwriter in ilogwriters)
+            foreach (var ilogwriter in _ilogwriters)
             {
                 ilogwriter.LogError(message);
             }

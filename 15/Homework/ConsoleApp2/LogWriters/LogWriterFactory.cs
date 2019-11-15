@@ -5,10 +5,13 @@
         private static LogWriterFactory instance;
         private LogWriterFactory()
         { }
-        public static LogWriterFactory GetInstance()
+        public static LogWriterFactory GetInstance
         {
-            return instance ??
-                (instance = new LogWriterFactory());
+            get
+            {
+                return instance ??
+                    (instance = new LogWriterFactory());
+            }
         }
         public ILogWriter GetLogWriter<T>(object parameters) where T : ILogWriter
         {

@@ -6,7 +6,7 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            var logwriterfactory = LogWriterFactory.GetInstance();
+            var logwriterfactory = LogWriterFactory.GetInstance;
             var consolelogwriter = logwriterfactory.GetLogWriter<ConsoleLogWriter>(null);
             consolelogwriter.LogInfo("Message for Info");
             consolelogwriter.LogWarning("Message for Warning");
@@ -18,7 +18,7 @@ namespace ConsoleApp2
             filelogwriter.LogError("Message for Error");
             Console.WriteLine("");
 
-            ILogWriter[] ilogwriters = new ILogWriter[] { consolelogwriter, filelogwriter };
+            var ilogwriters = new ILogWriter[] { consolelogwriter, filelogwriter };
 
             var miltilogwriter = logwriterfactory.GetLogWriter<MiltipleLogWriter>(ilogwriters);
             miltilogwriter.LogInfo("Message for Info");
