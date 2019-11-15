@@ -4,17 +4,14 @@ namespace ConsoleApp1
 {
     class FileLogWriter : AbstractLogWriter, ILogWriter 
     {
-        private readonly string _writer;
+        private readonly string _filename;
 
         public  FileLogWriter(string filename)
         {
-            _writer = filename;
+            _filename = filename;
         }
-
-        public  string LogFileName { get; }
-
         protected override void WriteMessage(string line) => 
-            File.AppendAllText(_writer, line);
+            File.AppendAllText(_filename, line);
 
     }
 }
