@@ -19,7 +19,7 @@ namespace Reminder.Storage.Memory.Tests
 
 			storage.Create(item);
 
-			var result = storage.FyndById(item.Id);
+			var result = storage.FindById(item.Id);
 
 			Assert.AreEqual(item.Id, result.Id);
 

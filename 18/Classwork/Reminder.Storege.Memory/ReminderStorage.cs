@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-
 [assembly: InternalsVisibleTo("Reminder.Storage.Memory.Tests")]
 namespace Reminder.Storage.Memory
 {
@@ -31,14 +30,16 @@ namespace Reminder.Storage.Memory
 				throw new ArgumentException($"Уже существует элемент с идентификатором {item.Id}", nameof(item.Id));
 			}
 			_map[item.Id] = item;
+            
 		}
-
-		public List<ReminderItem> FyndByDateTime(DateTimeOffset dateTime)
+       
+		public List<ReminderItem> FindByDateTime(DateTimeOffset dateTime)
 		{
-			throw new NotImplementedException();
-		}
+            throw new NotImplementedException();
 
-		public ReminderItem FyndById(Guid id)
+        }
+
+		public ReminderItem FindById(Guid id)
 		{
 			if (!_map.ContainsKey(id))
 			{

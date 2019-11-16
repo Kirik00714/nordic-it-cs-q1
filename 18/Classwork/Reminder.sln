@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution test", "Solution t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Storage.Memory.Tests", "Reminder.Storage.Memory.Tests\Reminder.Storage.Memory.Tests.csproj", "{E0902F41-9681-4C6A-9FCE-8AFFAFC82DDF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Storage", "ClassLibrary1\Reminder.Storage.csproj", "{7C67A714-70B3-446E-B834-4D2C5CEF7EF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Storage", "..\ClassLibrary1\Reminder.Storage.csproj", "{A2103851-18EE-4B37-A447-C5B8E428B761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,10 @@ Global
 		{E0902F41-9681-4C6A-9FCE-8AFFAFC82DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0902F41-9681-4C6A-9FCE-8AFFAFC82DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0902F41-9681-4C6A-9FCE-8AFFAFC82DDF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C67A714-70B3-446E-B834-4D2C5CEF7EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C67A714-70B3-446E-B834-4D2C5CEF7EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C67A714-70B3-446E-B834-4D2C5CEF7EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C67A714-70B3-446E-B834-4D2C5CEF7EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2103851-18EE-4B37-A447-C5B8E428B761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2103851-18EE-4B37-A447-C5B8E428B761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2103851-18EE-4B37-A447-C5B8E428B761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2103851-18EE-4B37-A447-C5B8E428B761}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,7 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{79E25E01-BC86-4755-AFED-3FD638F85727} = {44277747-ADC9-477D-8281-C7A159DFCF66}
 		{E0902F41-9681-4C6A-9FCE-8AFFAFC82DDF} = {A6E9FA52-1B2B-4B8B-BE75-6662F9F84C21}
-		{7C67A714-70B3-446E-B834-4D2C5CEF7EF4} = {44277747-ADC9-477D-8281-C7A159DFCF66}
+		{A2103851-18EE-4B37-A447-C5B8E428B761} = {44277747-ADC9-477D-8281-C7A159DFCF66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB471404-C302-48B7-8DC7-591DDEFAA6E1}

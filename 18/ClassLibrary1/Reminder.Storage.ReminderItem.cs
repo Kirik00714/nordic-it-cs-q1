@@ -5,7 +5,7 @@ namespace Reminder.Storage
 
 	public class ReminderItem
 	{
-
+        
 		public Guid Id { get; private set; }
 		public string ContactId { get; private set; }
 		public string Message { get; private set; }

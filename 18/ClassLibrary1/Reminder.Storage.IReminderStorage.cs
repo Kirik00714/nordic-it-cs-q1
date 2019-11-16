@@ -25,13 +25,13 @@ namespace Reminder.Storage
 		/// </summary>
 		/// <param name="id">Элемент ReminderItem</param>
 		/// <returns>Найденный элемент <see cref="ReminderItem"/></returns>
-		ReminderItem FyndById(Guid id);
+		ReminderItem FindById(Guid id);
 
 		/// <summary>
 		/// Возвращает все элементы <see cref="ReminderItem"/> не позднее указанной даты
 		/// </summary>
 		/// <param name="dateTime"></param>
 		/// <returns>Коллекция элементов <see cref="ReminderItem"/></returns>
-		List<ReminderItem> FyndByDateTime(DateTimeOffset dateTime);
+		List<ReminderItem> FindByDateTime(DateTimeOffset dateTime);
 	}
 }
