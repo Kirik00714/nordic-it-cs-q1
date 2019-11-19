@@ -33,9 +33,25 @@ namespace Reminder.Storage.Memory
             
 		}
        
-		public List<ReminderItem> FindByDateTime(DateTimeOffset dateTime)
+		public List<ReminderItem> FindBy(ReminderItemFilter filter)
 		{
-            throw new NotImplementedException();
+            if(filter == null)
+            {
+                throw new ArgumentException("переданно неверное значение для даты / времени", nameof(filter));
+            }
+
+            var result = _map.Values.AsEnumerable();
+
+            if (filter.Status.HasValue)
+            {
+                result = result.Where(item => item.Status == filter.Status.Value);
+            }
+            if (filter.DateTime.HasValue)
+            {
+                result = result.Where(item => item.MessageData == filter.DateTime.Value);
+            }
+            return result.ToList();
+            
 
         }
 
@@ -51,7 +67,7 @@ namespace Reminder.Storage.Memory
 
 		public void Update(ReminderItem item)
 		{
-			throw new NotImplementedException();
+            _map[item.Id] = item;
 		}
 	}
 }

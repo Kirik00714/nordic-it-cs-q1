@@ -37,5 +37,14 @@ namespace Reminder.Storage
 			MessageData = messageData;
 			Status = status;
 		}
-	}
+
+        public void ReadyToSend()
+        {
+            if (Status != RemindetItenStatus.Created)
+            {
+                throw new InvalidOperationException("Неккоректный статус");
+            }
+            Status = RemindetItenStatus.Ready;
+        }
+    }
 }
