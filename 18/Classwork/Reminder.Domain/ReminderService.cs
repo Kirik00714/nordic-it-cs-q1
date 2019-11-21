@@ -6,20 +6,23 @@ using Reminder.Storage;
 namespace Reminder.Domain
 {
     
-    
-        public class NotifyReminderModel
-        {
-            public string ContactId { get; set; }
-            public string Message { get; set; }
-            public DateTimeOffset Datetime { get; set; }
+       
 
-            public NotifyReminderModel(ReminderItem item)
-            {
-                Message = item.Message;
-                ContactId = item.ContactId;
-            }
+
+        
+    public class NotifyReminderModel
+    {
+        public string ContactId { get; set; }
+        public string Message { get; set; }
+        public DateTimeOffset Datetime { get; set; }
+
+        public NotifyReminderModel(ReminderItem item)
+        {
+            Message = item.Message;
+            ContactId = item.ContactId;
         }
-    
+    }
+
     public class CreateReminderModel
     {
         public string ContactId { get; set; }
@@ -36,6 +39,8 @@ namespace Reminder.Domain
             Datetime = datetime;
         }
     }
+        
+
     public class ReminderService : IDisposable
     {
         public event EventHandler<NotifyReminderModel> ItemNotified;
@@ -111,7 +116,7 @@ namespace Reminder.Domain
         private void OnItemFailed(ReminderItem item)
         {
             _storage.Update(item.Failed());
-            ItemSent?.Invoke(this, EventArgs.Empty);
+            ItemFailed?.Invoke(this, EventArgs.Empty);
         }
     }
 }
