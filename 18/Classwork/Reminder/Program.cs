@@ -1,6 +1,6 @@
 ﻿using System;
 using Reminder.Domain;
-using Reminder.Domain.Models;
+
 using Reminder.Storage.Memory;
 
 namespace Reminder

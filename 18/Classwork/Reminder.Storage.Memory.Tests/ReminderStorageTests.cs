@@ -1,83 +1,89 @@
 using System;
 using NUnit.Framework;
 
-namespace Reminder.Storage.Memory.Test
+namespace Reminder.Storage.Memory.Tests
 {
     public class ReminderStorageTests
     {
+        // WhenUnit_IfCondition_ShouldExpectedResult
+
         [Test]
         public void WhenCreate_IfEmptyStorage_ShouldFindItemById()
         {
-            //Arrange
-            var item = new ReminderItem(Guid.NewGuid(), "112", "Some text", DateTimeOffset.Now);
+            // Arrange
+            var item = CreateReminderItem();
             var storage = new ReminderStorage();
-            //Act
+
+            // Act
             storage.Create(item);
-            //Assert
+
+            // Assert
             var result = storage.FindById(item.Id);
             Assert.AreEqual(item.Id, result.Id);
         }
+
         [Test]
         public void WhenCreate_IfNullSpecified_ShouldThrowException()
         {
-            //Arrange
+            // Arrange
             var storage = new ReminderStorage();
-            //Act
-            //Assert
-            Assert.Catch<ArgumentNullException>(() =>
-            storage.Create(null));
-        }
-        [Test]
-        public void WhenCreate_IfExistElementWithKey_ShouldThrowException()
-        {
-            //Arrange
-            var item = new ReminderItem(
-                Guid.NewGuid(),
-                "123",
-                "Some text",
-                DateTimeOffset.Now);
-            var storage = new ReminderStorage(item);
-            //Assert
-            Assert.Catch<ArgumentException>(() =>
-                storage.Create(item));
 
+            // Act-Assert
+            Assert.Catch<ArgumentNullException>(() =>
+                storage.Create(null)
+            );
         }
+
         [Test]
-        public void WhenUpdate_IfNotExistElementWithKey_ShouldThrowException()
+        public void WhenCreate_IfExistsElementWithKey_ShouldThrowException()
         {
-            var item = new ReminderItem(
-                Guid.NewGuid(),
-                "123",
-                "Some text",
-                DateTimeOffset.Now);
-            var storage = new ReminderStorage();
-            Assert.Catch<ArgumentException>(() =>
-                storage.Update(item));
-        }
-        [Test]
-        public void WhenFindByDateTime_IfDateTimeIsDefault_ThrowException()
-        {
-            var reminderStorage = new ReminderStorage();
-            Assert.Catch<ArgumentException>(() =>
-                reminderStorage.FindBy(default));
-        }
-        [Test]
-        public void WhenFindByDateTime_IsSpecifiedDateTime_ShouldFilterByIt()
-        {
+            // Arrange
+            var item = CreateReminderItem();
             var storage = new ReminderStorage(
-                CreateReminderItem(messageDate: DateTimeOffset.Parse("12.11.2019 14:28:00.00"))
-                );
+                item
+            );
+
+            // Act-Assert
+            Assert.Catch<ArgumentException>(() =>
+                storage.Create(item)
+            );
+        }
+
+        [Test]
+        public void WhenFindBy_IfNullFilterSpecifeid_ShouldThrowException()
+        {
+            // Arrange
+            var storage = new ReminderStorage();
+
+            // Act-Assert
+            Assert.Catch<ArgumentNullException>(() =>
+                storage.FindBy(default)
+            );
+        }
+
+        [Test]
+        public void WhenFindBy_IfStatusSpecified_ShouldFilterByStatus()
+        {
+            // Arrange
+            var storage = new ReminderStorage(
+                CreateReminderItem(status: ReminderItemStatus.Created)
+            );
+
+            // Act
             var result = storage.FindBy(
-                DateTimeOffset.Parse("12.11.2019 14:28:00.00")
-                );
+                ReminderItemFilter.ByStatus(ReminderItemStatus.Created)
+            );
+
+            // Assert
             Assert.IsNotEmpty(result);
         }
+
         private ReminderItem CreateReminderItem(
             Guid? id = default,
             string contactId = default,
             string message = default,
-            DateTimeOffset? messageDate = default
-            )
+            DateTimeOffset? messageDate = default,
+            ReminderItemStatus? status = default)
         {
             if (!id.HasValue)
             {
@@ -95,7 +101,11 @@ namespace Reminder.Storage.Memory.Test
             {
                 messageDate = DateTimeOffset.UtcNow;
             }
-            return new ReminderItem(id.Value, contactId, message, messageDate.Value);
+            if (!status.HasValue)
+            {
+                status = ReminderItemStatus.Created;
+            }
+            return new ReminderItem(id.Value, contactId, message, messageDate.Value, status.Value);
         }
     }
 }
