@@ -1,19 +1,24 @@
 ﻿using System;
+
 namespace Reminder.Storage
 {
     public class ReminderItemFilter
     {
         public DateTimeOffset? DateTime { get; private set; }
-        public RemindetItenStatus? Status { get; private set; }
+        public ReminderItemStatus? Status { get; private set; }
+
         public ReminderItemFilter At(DateTimeOffset datetime)
         {
             DateTime = datetime;
             return this;
         }
-        public ReminderItemFilter Created()
+
+        public static ReminderItemFilter ByStatus(ReminderItemStatus status)
         {
-            Status = RemindetItenStatus.Created;
-            return this;
+            return new ReminderItemFilter
+            {
+                Status = status
+            };
         }
     }
 }

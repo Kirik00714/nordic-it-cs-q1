@@ -1,11 +1,11 @@
 ﻿namespace Reminder.Storage
 {
-	public enum RemindetItenStatus
-	{
-		Created,
-		Ready,
-		Sent,
-		Failure,
-
-	}
+    public enum ReminderItemStatus
+    {
+        Undefied = 0,
+        Created,
+        Ready,
+        Sent,
+        Failed
+    }
 }

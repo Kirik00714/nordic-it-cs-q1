@@ -1,74 +1,87 @@
 ﻿using System;
 using System.Threading;
 using Reminder.Storage;
+using Reminder.Domain.Models;
 
 namespace Reminder.Domain
 {
-    public class CreateReminderModul
+    public class ReminderService : IDisposable
     {
-        public string contactId { get; set; }
-        public string message { get; set; }
-        public DateTimeOffset messageData { get; set; }
-    }
+        public event EventHandler<NotifyReminderModel> ItemNotified;
+        public event EventHandler ItemSent;
+        public event EventHandler ItemFailed;
 
-    public class ReminderModelEventArgs : EventArgs
-    {
-        public string contactId
-    }
-
-
-    public class RemiinderService
-    {
-        public event EventHandler<ReminderModelEventArgs> ReminderitemFired;
         private readonly Timer _createdItemTimer;
-
-        private readonly IReminderStorage _storage;
         private readonly Timer _readyItemTimer;
+        private readonly IReminderStorage _storage;
 
         public ReminderService(IReminderStorage storage)
         {
             _storage = storage;
-            _createdItemTimer = new Timer(OnTimerTick, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _createdItemTimer = new Timer(OnCreatedItemTimerTick, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
             _readyItemTimer = new Timer(OnReadyItemTimerTick, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
-
-
         }
 
-        public void Create(CreateReminderModul model)
+        public void Dispose()
         {
-            var item = new ReminderItem(Guid.NewGuid(),model.contactId,model.message,model.messageData);
+            _createdItemTimer.Dispose();
+            _readyItemTimer.Dispose();
+        }
+
+        public void Create(CreateReminderModel model)
+        {
+            var item = new ReminderItem(
+                Guid.NewGuid(),
+                model.ContactId,
+                model.Message,
+                model.Datetime);
+
             _storage.Create(item);
         }
 
-        private void OnTimerTick(object state)
+        private void OnCreatedItemTimerTick(object _)
         {
-            
-            var filter = new ReminderItemFilter().At(DateTimeOffset.Now).Created());
+            var filter = ReminderItemFilter
+                .ByStatus(ReminderItemStatus.Created)
+                .At(DateTimeOffset.UtcNow);
             var items = _storage.FindBy(filter);
+
             foreach (var item in items)
             {
-                
                 _storage.Update(item.ReadyToSend());
             }
-
-
-
         }
-        private void OnReadyItemTimerTick(object state)
-        {
 
-            var filter = new ReminderItemFilter().Ready();
+        private void OnReadyItemTimerTick(object _)
+        {
+            var filter = ReminderItemFilter.ByStatus(ReminderItemStatus.Ready);
             var items = _storage.FindBy(filter);
+
             foreach (var item in items)
             {
-
-                ReminderitemFired?.Invoke(this, new ReminderModelEventArgs(item));
+                try
+                {
+                    ItemNotified?.Invoke(this, new NotifyReminderModel(item));
+                    OnItemSent(item);
+                }
+                catch (Exception ex)
+                {
+                    OnItemFailed(item);
+                }
             }
-
-
-
         }
 
+        private void OnItemSent(ReminderItem item)
+        {
+            _storage.Update(item.Sent());
+            ItemSent?.Invoke(this, EventArgs.Empty);
+        }
 
+        private void OnItemFailed(ReminderItem item)
+        {
+            _storage.Update(item.Failed());
+            ItemSent?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
+
