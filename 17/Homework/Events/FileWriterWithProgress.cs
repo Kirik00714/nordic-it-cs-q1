@@ -1,42 +1,44 @@
 ﻿using System;
+using System.IO;
 
 namespace Events
 {
     public class FileWriterWithProgress
-    { 
-        public event EventHandler<FWWP> WritingPerformed;
+    {
+        public event EventHandler<WorkPerformedEventArgs> WritingPerformed;
         public event EventHandler WritingCompleted;
-        
+
         public void WriteBytes(string fileName, byte[] data, float percentageToFireEvent)
         {
-                
-                if (string.IsNullOrWhiteSpace(fileName))
-                {
-                    throw new ArgumentNullException(nameof(fileName));
-                }
-                if (percentageToFireEvent < 0 && percentageToFireEvent> 1)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(percentageToFireEvent));
-                }
-                if (data == null)
-                {
-                    throw new ArgumentNullException(nameof(data));
-                }
 
-                for (int i = 0; i < data.Length; i++)
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+            if (percentageToFireEvent < 0 && percentageToFireEvent > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(percentageToFireEvent));
+            }
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+            File.AppendAllText(fileName, String.Join(",", data));
+            for (int i = 0; i < data.Length; i++)
+            {
+                float percentage = default;
+                if (percentage <= ((i + 1) / (float)data.Length))
                 {
-                    float result = i * percentageToFireEvent * 100;
-                    if (result > 100)
+                    percentage = ((i + 1) * percentageToFireEvent)*100;
+                    if (percentage < 100)
                     {
-                        break;
-                    }
-                    if (i % percentageToFireEvent != 0)
-                    {
-                        WritingPerformed?.Invoke(this, new FWWP(result));
+                        
+                        WritingPerformed?.Invoke(this, new WorkPerformedEventArgs(percentage));
                     }
                 }
+            }
+            WritingCompleted?.Invoke(this, null);
 
-                WritingCompleted?.Invoke(this, null);
             
         }
     }
