@@ -6,7 +6,7 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            var logwriterfactory = LogWriterFactory.GetInstance;
+            var logwriterfactory = LogWriterFactory.Instance;
             var consolelogwriter = logwriterfactory.GetLogWriter<ConsoleLogWriter>(null);
             consolelogwriter.LogInfo("Message for Info");
             consolelogwriter.LogWarning("Message for Warning");

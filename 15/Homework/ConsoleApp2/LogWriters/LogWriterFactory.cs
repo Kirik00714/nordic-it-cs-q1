@@ -1,11 +1,13 @@
-﻿namespace ConsoleApp2
+﻿using System;
+
+namespace ConsoleApp2
 {
     class LogWriterFactory
     {
         private static LogWriterFactory instance;
         private LogWriterFactory()
         { }
-        public static LogWriterFactory GetInstance
+        public static LogWriterFactory Instance
         {
             get
             {
@@ -28,7 +30,7 @@
                 }
                 else
                 {
-                    return null;
+                    throw new ArgumentException("Error");
                 }
             }
             else if (typeof(T) == typeof(MiltipleLogWriter))
@@ -37,7 +39,7 @@
             }
             else
             {
-                return null;
+                throw new ArgumentException("Error");
             }
 
         }       
