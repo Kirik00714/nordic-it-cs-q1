@@ -8,7 +8,7 @@ namespace ConsoleApp1
         private static ConsoleLogWriter instance; 
         private ConsoleLogWriter()
         { }
-        public static ConsoleLogWriter GetInstance
+        public static ConsoleLogWriter Instance
         {
             get
             {

@@ -7,7 +7,7 @@ namespace ConsoleApp1
         private static FileLogWriter instance;
         private FileLogWriter()
         { }
-        public static FileLogWriter GetInstance
+        public static FileLogWriter Instance
         {
             get
             {
@@ -15,7 +15,7 @@ namespace ConsoleApp1
                     (instance = new FileLogWriter());
             }
         }
-        public string Filename;
+        public static string Filename;
         protected override void WriteMessage(string line) =>
             File.AppendAllText(Filename, line);
 

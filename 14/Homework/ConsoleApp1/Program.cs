@@ -6,13 +6,13 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var filelogwriter = FileLogWriter.GetInstance;
-            filelogwriter.Filename = "File.txt";
+            var filelogwriter = FileLogWriter.Instance;
+            FileLogWriter.Filename = "File.txt";
             filelogwriter.LogInfo("Message for Info");
             filelogwriter.LogWarning("Message for Warning");
             filelogwriter.LogError("Message for Error");
 
-            var consolelogwriter = ConsoleLogWriter.GetInstance;
+            var consolelogwriter = ConsoleLogWriter.Instance;
             consolelogwriter.LogInfo("Message for Info");
             consolelogwriter.LogWarning("Message for Warning");
             consolelogwriter.LogError("Message for Error");
