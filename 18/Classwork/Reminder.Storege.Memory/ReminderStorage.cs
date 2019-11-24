@@ -8,24 +8,29 @@ namespace Reminder.Storage.Memory
     public class ReminderStorage : IReminderStorage
     {
         private readonly Dictionary<Guid, ReminderItem> _map;
-        internal ReminderStorage(params ReminderItem[] items)
+
+        public ReminderStorage(params ReminderItem[] items)
         {
             _map = items.ToDictionary(item => item.Id);
         }
+
         public ReminderStorage()
         {
             _map = new Dictionary<Guid, ReminderItem>();
         }
+
         public void Create(ReminderItem item)
         {
-            if (item == default)
+            if (item == null)
             {
-                throw new ArgumentNullException("Предмету не присвоено значение", nameof(item));
+                throw new ArgumentNullException(nameof(item));
             }
+
             if (_map.ContainsKey(item.Id))
             {
-                throw new ArgumentException($"Предмет с таким идентификатором {item.Id} уже существует");
+                throw new ArgumentException($"Уже существует элемент с идентификатором {item.Id}");
             }
+
             _map[item.Id] = item;
         }
 
@@ -49,27 +54,25 @@ namespace Reminder.Storage.Memory
             }
 
             return result.ToList();
-
         }
+
         public ReminderItem FindById(Guid id)
         {
             if (!_map.ContainsKey(id))
             {
-                throw new ArgumentException($"Не найден элемент с ключем {id}", nameof(id));
+                throw new ArgumentException($"Не найден элемент с ключом {id}", nameof(id));
             }
-            return _map[id];
 
+            return _map[id];
         }
+
         public void Update(ReminderItem item)
         {
             if (!_map.ContainsKey(item.Id))
             {
-                throw new ArgumentException($"Не найден элемент с ключем {item.Id}", nameof(item.Id));
+                throw new ArgumentException($"Не найден элемент с ключом {item.Id}");
             }
-            else
-            {
-                _map[item.Id] = item;
-            }
+            _map[item.Id] = item;
         }
     }
 }

@@ -77,6 +77,17 @@ namespace Reminder.Storage.Memory.Tests
             // Assert
             Assert.IsNotEmpty(result);
         }
+        public void WhenUpdate_IfKeyElementNotFound_ShouldThrowException()
+        {
+            var item = new ReminderItem(
+                Guid.NewGuid(),
+                "123",
+                "Some text",
+                DateTimeOffset.Now);
+            var storage = new ReminderStorage();
+            Assert.Catch<ArgumentException>(() =>
+                storage.Update(item));
+        }
 
         private ReminderItem CreateReminderItem(
             Guid? id = default,

@@ -17,15 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Domain", "Reminder
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder", "Reminder\Reminder.csproj", "{592932AE-5DA1-464C-8D18-85724014C39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder.Sender", "Reminder.Sender\Reminder.Sender.csproj", "{31EE8CC2-B1BD-431D-A103-C568A6F3CDF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Sender", "Reminder.Sender\Reminder.Sender.csproj", "{31EE8CC2-B1BD-431D-A103-C568A6F3CDF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder.Receiver", "Reminder.Receiver\Reminder.Receiver.csproj", "{F7DF4126-1AD9-4388-AE5D-CDD18FF3042B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Receiver", "Reminder.Receiver\Reminder.Receiver.csproj", "{F7DF4126-1AD9-4388-AE5D-CDD18FF3042B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder.Domain.Tests", "Reminder.Domain.Tests\Reminder.Domain.Tests.csproj", "{B2EF6FCC-B233-4D32-82B5-60A59F7A96F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Domain.Tests", "Reminder.Domain.Tests\Reminder.Domain.Tests.csproj", "{B2EF6FCC-B233-4D32-82B5-60A59F7A96F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder.Sender.Telegram", "Reminder.Sender.Telegram\Reminder.Sender.Telegram.csproj", "{3DBEDCB2-DE63-464A-8798-79FA3F8F310E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Sender.Telegram", "Reminder.Sender.Telegram\Reminder.Sender.Telegram.csproj", "{3DBEDCB2-DE63-464A-8798-79FA3F8F310E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder.Receiver.Telegram", "Reminder.Receiver.Telegram\Reminder.Receiver.Telegram.csproj", "{A1813E35-0796-478F-B627-F30E21AB6BA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reminder.Receiver.Telegram", "Reminder.Receiver.Telegram\Reminder.Receiver.Telegram.csproj", "{A1813E35-0796-478F-B627-F30E21AB6BA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder.Storage.Tests", "Reminder.Storage.Tests\Reminder.Storage.Tests.csproj", "{AEC67CE1-2EA1-477B-BA26-1B01AA9D44A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{A1813E35-0796-478F-B627-F30E21AB6BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1813E35-0796-478F-B627-F30E21AB6BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1813E35-0796-478F-B627-F30E21AB6BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC67CE1-2EA1-477B-BA26-1B01AA9D44A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC67CE1-2EA1-477B-BA26-1B01AA9D44A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC67CE1-2EA1-477B-BA26-1B01AA9D44A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC67CE1-2EA1-477B-BA26-1B01AA9D44A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +94,7 @@ Global
 		{B2EF6FCC-B233-4D32-82B5-60A59F7A96F6} = {A6E9FA52-1B2B-4B8B-BE75-6662F9F84C21}
 		{3DBEDCB2-DE63-464A-8798-79FA3F8F310E} = {44277747-ADC9-477D-8281-C7A159DFCF66}
 		{A1813E35-0796-478F-B627-F30E21AB6BA1} = {44277747-ADC9-477D-8281-C7A159DFCF66}
+		{AEC67CE1-2EA1-477B-BA26-1B01AA9D44A9} = {A6E9FA52-1B2B-4B8B-BE75-6662F9F84C21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB471404-C302-48B7-8DC7-591DDEFAA6E1}

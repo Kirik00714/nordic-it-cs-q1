@@ -1,29 +1,73 @@
-using NUnit.Framework;
-using Reminder.Storage.Memory;
-
 using System;
 using System.Threading;
+using NUnit.Framework;
+using Reminder.Domain;
+using Reminder.Domain.Tests;
+using Reminder.Sender;
 
-namespace Reminder.Domain.Tests
+namespace Reminder.Storage.Memory.Tests
 {
     public class ReminderServiceTests
     {
-        
+        private ReminderServiceParameters Parameters { get; } =
+            new ReminderServiceParameters(
+                createTimerInterval: TimeSpan.FromMilliseconds(50),
+                createTimerDelay: TimeSpan.Zero,
+                readyTimerInterval: TimeSpan.FromMilliseconds(50),
+                readyTimerDelay: TimeSpan.Zero
+            );
+
+        private ReminderStorage Storage =>
+            new ReminderStorage();
+
+        private IReminderSender SuccessSender =>
+            new ReminderSenderFake();
+
+        private IReminderSender FailedSender =>
+            new ReminderSenderFake(shouldRaiseError: true);
+
         [Test]
-        public void ItemSend_WhenReminderItemAdded_ShouldRaiseEvent()
+        public void ItemSent_WhenReminderNotificationSent_ShouldRaiseEvent()
         {
-            var storage = new ReminderStorage();
-            var service = new ReminderService(storage);
-            var eventRaise = false;
+            // Arrange
+            var eventRaised = false;
+            var receiver = new ReminderReceiverFake();
+            var service = new ReminderService(Storage, SuccessSender, receiver, Parameters);
 
-            service.ItemSent += (sender, args) => eventRaise = true;
-            service.Create(new CreateReminderModel("Contactid", "Message", DateTimeOffset.Now));
-            Thread.Sleep(TimeSpan.FromSeconds(4));
-            Assert.IsTrue(eventRaise);
+            // Act
+            service.ItemSent += (sender, args) => eventRaised = true;
+            service.Start();
+            receiver.Emit();
+            WaitTimers();
+
+            // Assert
+            Assert.IsTrue(eventRaised);
         }
-    }
-    private CreateReminderModel CreateReminderModel()
-    {
 
+        [Test]
+        public void ItemFailed_WhenReminderNotificationFailed_ShouldRaiseEvent()
+        {
+            // Arrange
+            var eventRaised = false;
+            var receiver = new ReminderReceiverFake();
+            var service = new ReminderService(Storage, FailedSender, receiver, Parameters);
+
+            // Act
+            service.ItemFailed += (sender, args) => eventRaised = true;
+            service.Start();
+            receiver.Emit();
+            WaitTimers();
+
+            // Assert
+            Assert.IsTrue(eventRaised);
+        }
+
+        private void WaitTimers()
+        {
+            Thread.Sleep(
+                (Parameters.CreateTimerDelay + Parameters.ReadyTimerDelay) * 2 +
+                (Parameters.CreateTimerInterval + Parameters.ReadyTimerInternval) * 2
+            );
+        }
     }
 }

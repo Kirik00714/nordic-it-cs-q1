@@ -1,85 +1,104 @@
 ﻿using System;
 using System.Threading;
+using Reminder.Sender;
 using Reminder.Storage;
-
+using Reminder.Receiver;
 
 namespace Reminder.Domain
 {
-    
-       
-
-
-        
-    public class NotifyReminderModel
+    public class ReminderServiceParameters
     {
-        public string ContactId { get; set; }
-        public string Message { get; set; }
-        public DateTimeOffset Datetime { get; set; }
+        public static ReminderServiceParameters Default =>
+            new ReminderServiceParameters(
+                TimeSpan.FromSeconds(1),
+                TimeSpan.Zero,
+                TimeSpan.FromSeconds(1),
+                TimeSpan.Zero);
 
-        public NotifyReminderModel(ReminderItem item)
+        public ReminderServiceParameters(
+            TimeSpan createTimerInterval,
+            TimeSpan createTimerDelay,
+            TimeSpan readyTimerInterval,
+            TimeSpan readyTimerDelay)
         {
-            Message = item.Message;
-            ContactId = item.ContactId;
+            CreateTimerInterval = createTimerInterval;
+            CreateTimerDelay = createTimerDelay;
+            ReadyTimerInternval = readyTimerInterval;
+            ReadyTimerDelay = readyTimerDelay;
+        }
+
+        public TimeSpan CreateTimerInterval { get; }
+        public TimeSpan CreateTimerDelay { get; }
+        public TimeSpan ReadyTimerInternval { get; }
+        public TimeSpan ReadyTimerDelay { get; }
+    }
+    public class ItemFailedEventArgs : EventArgs
+    {
+        public Guid Id { get; }
+        public NotificationException Exception { get; set; }
+
+        public ItemFailedEventArgs(Guid id, NotificationException exception)
+        {
+            Id = id;
+            Exception = exception;
         }
     }
-
-    public class CreateReminderModel
+    public class ItemSentEventArgs : EventArgs
     {
-        public string ContactId { get; set; }
-        public string Message { get; set; }
-        public DateTimeOffset Datetime { get; set; }
+        public Guid Id { get; }
 
-        public CreateReminderModel(
-            string contactId,
-            string message,
-            DateTimeOffset datetime)
+        public ItemSentEventArgs(Guid id)
         {
-            ContactId = contactId;
-            Message = message;
-            Datetime = datetime;
+            Id = id;
         }
     }
-        
-
     public class ReminderService : IDisposable
     {
-        public event EventHandler<NotifyReminderModel> ItemNotified;
-        public event EventHandler ItemSent;
-        public event EventHandler ItemFailed;
+        public event EventHandler<ItemSentEventArgs> ItemSent;
+        public event EventHandler<ItemFailedEventArgs> ItemFailed;
 
-        private readonly Timer _createdItemTimer;
-        private readonly Timer _readyItemTimer;
         private readonly IReminderStorage _storage;
+        private readonly IReminderSender _sender;
+        private readonly IReminderReceiver _receiver;
+        private readonly ReminderServiceParameters _parameters;
+        private Timer _createdItemTimer;
+        private Timer _readyItemTimer;
 
-        public ReminderService(IReminderStorage storage)
+        public ReminderService(
+            IReminderStorage storage,
+            IReminderSender sender,
+            IReminderReceiver receiver,
+            ReminderServiceParameters parameters)
         {
-            _storage = storage;
-            _createdItemTimer = new Timer(OnCreatedItemTimerTick, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            _readyItemTimer = new Timer(OnReadyItemTimerTick, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _sender = sender ?? throw new ArgumentNullException(nameof(sender));
+            _receiver = receiver ?? throw new ArgumentNullException(nameof(receiver));
+            _receiver.MessageReceived += OnMessageReceived;
+            _parameters = parameters ?? throw new ArgumentNullException(nameof(parameters));
+        }
+
+        public void Start()
+        {
+            _createdItemTimer = new Timer(OnCreatedItemTimerTick, null,
+                _parameters.CreateTimerDelay,
+                _parameters.CreateTimerInterval);
+            _readyItemTimer = new Timer(OnReadyItemTimerTick, null,
+                _parameters.ReadyTimerDelay,
+                _parameters.ReadyTimerInternval);
         }
 
         public void Dispose()
         {
             _createdItemTimer.Dispose();
             _readyItemTimer.Dispose();
-        }
-
-        public void Create(CreateReminderModel model)
-        {
-            var item = new ReminderItem(
-                Guid.NewGuid(),
-                model.ContactId,
-                model.Message,
-                model.Datetime);
-
-            _storage.Create(item);
+            _receiver.MessageReceived -= OnMessageReceived;
         }
 
         private void OnCreatedItemTimerTick(object _)
         {
             var filter = ReminderItemFilter
                 .ByStatus(ReminderItemStatus.Created)
-                .At(DateTimeOffset.UtcNow);
+                .At(DateTimeOffset.Now);
             var items = _storage.FindBy(filter);
 
             foreach (var item in items)
@@ -97,12 +116,17 @@ namespace Reminder.Domain
             {
                 try
                 {
-                    ItemNotified?.Invoke(this, new NotifyReminderModel(item));
+                    var notification = new Notification(
+                        item.ContactId,
+                        item.Message,
+                        item.MessageDate);
+
+                    _sender.Send(notification);
                     OnItemSent(item);
                 }
-                catch (Exception ex)
+                catch (NotificationException exception)
                 {
-                    OnItemFailed(item);
+                    OnItemFailed(item, exception);
                 }
             }
         }
@@ -110,13 +134,24 @@ namespace Reminder.Domain
         private void OnItemSent(ReminderItem item)
         {
             _storage.Update(item.Sent());
-            ItemSent?.Invoke(this, EventArgs.Empty);
+            ItemSent?.Invoke(this, new ItemSentEventArgs(item.Id));
         }
 
-        private void OnItemFailed(ReminderItem item)
+        private void OnItemFailed(ReminderItem item, NotificationException exception)
         {
             _storage.Update(item.Failed());
-            ItemFailed?.Invoke(this, EventArgs.Empty);
+            ItemFailed?.Invoke(this, new ItemFailedEventArgs(item.Id, exception));
+        }
+
+        private void OnMessageReceived(object sender, MessageReceivedEventArgs args)
+        {
+            var item = new ReminderItem(
+                Guid.NewGuid(),
+                args.ContactId,
+                args.Message.Text,
+                args.Message.Datetime);
+
+            _storage.Create(item);
         }
     }
 }

@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ClassLibrary1\Reminder.Storage.csproj" />
+    <ProjectReference Include="..\Reminder.Receiver\Reminder.Receiver.csproj" />
+    <ProjectReference Include="..\Reminder.Sender\Reminder.Sender.csproj" />
   </ItemGroup>
 
 </Project>
