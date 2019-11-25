@@ -61,6 +61,34 @@ namespace Reminder.Storage.Memory.Tests
             // Assert
             Assert.IsTrue(eventRaised);
         }
+        [Test]
+        public void WhenStorage_IfNullSpecified_ShouldThrowException()
+        {
+            var receiver = new ReminderReceiverFake();
+            Assert.Catch<ArgumentNullException>(() =>
+                new ReminderService(null, FailedSender, receiver, Parameters));
+        }
+        [Test]
+        public void WhenFailedSender_IfNullSpecified_ShouldThrowException()
+        {
+            var receiver = new ReminderReceiverFake();
+            Assert.Catch<ArgumentNullException>(() =>
+                new ReminderService(Storage, null, receiver, Parameters));
+        }
+        [Test]
+        public void WhenReminderReceiverFake_IfNullSpecified_ShouldThrowException()
+        {
+            var receiver = new ReminderReceiverFake();
+            Assert.Catch<ArgumentNullException>(() =>
+                new ReminderService(Storage, FailedSender, null, Parameters));
+        }
+        [Test]
+        public void WhenParameters_IfNullSpecified_ShouldThrowException()
+        {
+            var receiver = new ReminderReceiverFake();
+            Assert.Catch<ArgumentNullException>(() =>
+                new ReminderService(Storage, FailedSender, receiver, null));
+        }
 
         private void WaitTimers()
         {

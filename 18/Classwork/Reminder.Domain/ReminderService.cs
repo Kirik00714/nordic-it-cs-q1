@@ -6,52 +6,6 @@ using Reminder.Receiver;
 
 namespace Reminder.Domain
 {
-    public class ReminderServiceParameters
-    {
-        public static ReminderServiceParameters Default =>
-            new ReminderServiceParameters(
-                TimeSpan.FromSeconds(1),
-                TimeSpan.Zero,
-                TimeSpan.FromSeconds(1),
-                TimeSpan.Zero);
-
-        public ReminderServiceParameters(
-            TimeSpan createTimerInterval,
-            TimeSpan createTimerDelay,
-            TimeSpan readyTimerInterval,
-            TimeSpan readyTimerDelay)
-        {
-            CreateTimerInterval = createTimerInterval;
-            CreateTimerDelay = createTimerDelay;
-            ReadyTimerInternval = readyTimerInterval;
-            ReadyTimerDelay = readyTimerDelay;
-        }
-
-        public TimeSpan CreateTimerInterval { get; }
-        public TimeSpan CreateTimerDelay { get; }
-        public TimeSpan ReadyTimerInternval { get; }
-        public TimeSpan ReadyTimerDelay { get; }
-    }
-    public class ItemFailedEventArgs : EventArgs
-    {
-        public Guid Id { get; }
-        public NotificationException Exception { get; set; }
-
-        public ItemFailedEventArgs(Guid id, NotificationException exception)
-        {
-            Id = id;
-            Exception = exception;
-        }
-    }
-    public class ItemSentEventArgs : EventArgs
-    {
-        public Guid Id { get; }
-
-        public ItemSentEventArgs(Guid id)
-        {
-            Id = id;
-        }
-    }
     public class ReminderService : IDisposable
     {
         public event EventHandler<ItemSentEventArgs> ItemSent;
@@ -148,7 +102,7 @@ namespace Reminder.Domain
             var item = new ReminderItem(
                 Guid.NewGuid(),
                 args.ContactId,
-                args.Message.Text,
+                args.Message.Text, 
                 args.Message.Datetime);
 
             _storage.Create(item);
