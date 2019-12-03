@@ -1,54 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CityApp.WiewModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using CityApp.Models;
+using CityApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CityApp.Controllers
 {
-	//Обрабатыевает всю логику по управлению городами
-	public class City
-	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
-		public int Population { get; set; }
-	}
-	public class CityStorage
-	{
-		private static CityStorage _instance;
-		public static CityStorage Instance =>
-			_instance ?? (_instance = new CityStorage());
-		private readonly List<City> _cities;
-		private CityStorage()
-		{
-			_cities = new List<City>
-			{
-				new City
-				{
-					Id = Guid.NewGuid(),
-					Name = "Moscow",
-					Population = 16_000_000
-				},
-				new City
-				{
-					Id = Guid.NewGuid(),
-					Name = "Санкт-Петербург",
-					Population = 5_000_000
-				},
-
-			};
-		}
-		public City[] GetAll()
-		{
-			return _cities.ToArray();
-		}
-
-		public vois Create(City city)
-		{
-			_cities.Add(city);
-		}
-
-
-	}
 
 	public class CityController : Controller
 	{
@@ -56,15 +14,50 @@ namespace CityApp.Controllers
 		[HttpGet("api/city/list")]
 		public IActionResult List()
 		{
-			var storage = new CityStorage.Instance.GetAll();
-			return Json(cities);
+			var cities = CityStorage.Instance
+				.GetAll()
+				.Select((City city) => new CityViewModel(city))
+				.OrderBy((CityViewModel viewModel) => viewModel.Name).ToArray();
+			return Ok(cities);
 		}
-		[HttpPost("cities")]
-		[HttpPost("api/city")]
-		public IActionResult Create([FromBody] City city)
+		[HttpPost("cities/{id}")]
+		[HttpPost("api/city/{id}")]
+		public IActionResult Create([FromBody] CreateCityModel city)
 		{
-			CityStorage.Instance.Create(city);
-			return Ok();
+			if (city == null)
+			{
+				return BadRequest();
+			}
+			if (!ModelState.IsValid)
+			{
+				ModelState
+					.Select(pair => new ValidationErrorViewModel(pair.Key, pair.Value)).ToArray();
+
+				return BadRequest();
+			}
+			var model = new City(
+				city.Name,
+				city.Description,
+				city.Population);
+
+
+			CityStorage.Instance.Create(model);
+			return CreatedAtAction("Get", model);
+		}
+		[HttpPost("cities/{id}", Name ="Get")]
+		[HttpPost("api/city/{id}", Name = "ApiGet")]
+		public IActionResult Get (Guid id)
+		{
+			if (id == Guid.Empty)
+			{
+				return BadRequest();
+			}
+			var city = CityStorage.Instance.GetById(id);
+			if (city == null)
+			{
+				return NotFound();
+			}
+			return Ok(new DetailCityViewModel(city));
 		}
 
 	}
