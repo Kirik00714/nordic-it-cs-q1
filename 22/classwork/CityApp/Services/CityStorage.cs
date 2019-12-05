@@ -8,11 +8,9 @@ namespace CityApp.Services
 {
 	public class CityStorage
 	{
-		private static CityStorage _instance;
-		public static CityStorage Instance =>
-			_instance ?? (_instance = new CityStorage());
+		
 		private readonly List<City> _cities;
-		private CityStorage()
+		public CityStorage()
 		{
 			_cities = new List<City>
 			{

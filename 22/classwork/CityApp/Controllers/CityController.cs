@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using CityApp.Models;
 using CityApp.Services;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace CityApp.Controllers
@@ -10,11 +11,20 @@ namespace CityApp.Controllers
 
 	public class CityController : Controller
 	{
+		private ILogger _logger;
+		private CityStorage _storage;
+		public CityController(ILogger<CityController> logger, CityStorage storage)
+		{
+			_logger = logger;
+			_storage = storage;
+		}
+
 		[HttpGet ("cities")]
 		[HttpGet("api/city/list")]
 		public IActionResult List()
 		{
-			var cities = CityStorage.Instance
+
+			var cities = _storage
 				.GetAll()
 				.Select((City city) => new CityViewModel(city))
 				.OrderBy((CityViewModel viewModel) => viewModel.Name).ToArray();
@@ -41,7 +51,7 @@ namespace CityApp.Controllers
 				city.Population);
 
 
-			CityStorage.Instance.Create(model);
+			_storage.Create(model);
 			return CreatedAtAction("Get", model);
 		}
 		[HttpPost("cities/{id}", Name ="Get")]
@@ -50,11 +60,13 @@ namespace CityApp.Controllers
 		{
 			if (id == Guid.Empty)
 			{
+				_logger.LogWarning("Invalid id specifies");
 				return BadRequest();
 			}
-			var city = CityStorage.Instance.GetById(id);
+			var city = _storage.GetById(id);
 			if (city == null)
 			{
+				_logger.LogWarning("City with id {0} is not found", id);
 				return NotFound();
 			}
 			return Ok(new DetailCityViewModel(city));

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CityApp.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -14,6 +15,7 @@ namespace CityApp
 			services.AddMvc(option =>
 			{ option.RespectBrowserAcceptHeader = true; }).AddXmlSerializerFormatters();
 			services.AddSwaggerGen(options => { options.SwaggerDoc("v1", new Info { Title = "Cities", Version = "2.0" }); });
+			services.AddSingleton<CityStorage>();
 		}
 		public void Configure(
 			IApplicationBuilder builder,
