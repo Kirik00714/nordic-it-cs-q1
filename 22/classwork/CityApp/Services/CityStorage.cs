@@ -34,6 +34,15 @@ namespace CityApp.Services
 		{
 			return _cities.FirstOrDefault(city => city.Id == id);
 		}
+        public void Delete(Guid id)
+        {
+            _cities.Remove(_cities.Find(city => city.Id == id));
+        }
+        public void Update(City city,Guid id)
+        {
+            _cities.Remove(_cities.Find(update => update.Id == id));
+            _cities.Add(city);
+        }
 
 	}
 }

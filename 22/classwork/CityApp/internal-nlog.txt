@@ -24,3 +24,69 @@
 2019-12-09 19:32:13.8492 Info Adding target File Target[ownFile-web]
 2019-12-09 19:32:13.8582 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
 2019-12-09 19:32:13.9052 Info Found 45 configuration items
+2019-12-10 00:37:13.3879 Info Message Template Auto Format enabled
+2019-12-10 00:37:13.4479 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 00:37:13.9909 Info Adding target File Target[allfile]
+2019-12-10 00:37:14.0969 Info Adding target File Target[ownFile-web]
+2019-12-10 00:37:14.0969 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 00:37:14.1229 Info Found 45 configuration items
+2019-12-10 00:45:16.6435 Info Message Template Auto Format enabled
+2019-12-10 00:45:16.6635 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 00:45:16.7905 Info Adding target File Target[allfile]
+2019-12-10 00:45:16.7985 Info Adding target File Target[ownFile-web]
+2019-12-10 00:45:16.7985 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 00:45:16.8226 Info Found 45 configuration items
+2019-12-10 00:47:54.4576 Info Message Template Auto Format enabled
+2019-12-10 00:47:54.4686 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 00:47:54.5356 Info Adding target File Target[allfile]
+2019-12-10 00:47:54.5426 Info Adding target File Target[ownFile-web]
+2019-12-10 00:47:54.5426 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 00:47:54.5686 Info Found 45 configuration items
+2019-12-10 00:52:02.7418 Info Message Template Auto Format enabled
+2019-12-10 00:52:02.7418 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 00:52:02.8668 Info Adding target File Target[allfile]
+2019-12-10 00:52:02.8668 Info Adding target File Target[ownFile-web]
+2019-12-10 00:52:02.8828 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 00:52:02.9008 Info Found 45 configuration items
+2019-12-10 00:59:15.5185 Info Message Template Auto Format enabled
+2019-12-10 00:59:15.5185 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 00:59:15.6265 Info Adding target File Target[allfile]
+2019-12-10 00:59:15.6345 Info Adding target File Target[ownFile-web]
+2019-12-10 00:59:15.6345 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 00:59:15.6615 Info Found 45 configuration items
+2019-12-10 01:05:32.3021 Info Message Template Auto Format enabled
+2019-12-10 01:05:32.3101 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 01:05:32.3751 Info Adding target File Target[allfile]
+2019-12-10 01:05:32.3751 Info Adding target File Target[ownFile-web]
+2019-12-10 01:05:32.3911 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 01:05:32.4081 Info Found 45 configuration items
+2019-12-10 01:11:16.8878 Info Message Template Auto Format enabled
+2019-12-10 01:11:16.8878 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 01:11:17.0168 Info Adding target File Target[allfile]
+2019-12-10 01:11:17.0238 Info Adding target File Target[ownFile-web]
+2019-12-10 01:11:17.0238 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 01:11:17.0488 Info Found 45 configuration items
+2019-12-10 01:18:40.6672 Info Message Template Auto Format enabled
+2019-12-10 01:18:40.6762 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 01:18:40.7592 Info Adding target File Target[allfile]
+2019-12-10 01:18:40.7592 Info Adding target File Target[ownFile-web]
+2019-12-10 01:18:40.7742 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 01:18:40.7912 Info Found 45 configuration items
+2019-12-10 01:22:13.6323 Info Message Template Auto Format enabled
+2019-12-10 01:22:13.6323 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 01:22:13.7204 Info Adding target File Target[allfile]
+2019-12-10 01:22:13.7284 Info Adding target File Target[ownFile-web]
+2019-12-10 01:22:13.7284 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 01:22:13.7574 Info Found 45 configuration items
+2019-12-10 01:24:49.7543 Info Message Template Auto Format enabled
+2019-12-10 01:24:49.7623 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 01:24:49.8753 Info Adding target File Target[allfile]
+2019-12-10 01:24:49.8823 Info Adding target File Target[ownFile-web]
+2019-12-10 01:24:49.8823 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 01:24:49.9093 Info Found 45 configuration items
+2019-12-10 01:41:19.4399 Info Message Template Auto Format enabled
+2019-12-10 01:41:19.4899 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-10 01:41:20.0369 Info Adding target File Target[allfile]
+2019-12-10 01:41:20.3289 Info Adding target File Target[ownFile-web]
+2019-12-10 01:41:20.3369 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
+2019-12-10 01:41:20.3539 Info Found 45 configuration items

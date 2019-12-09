@@ -5,6 +5,7 @@ using CityApp.Models;
 using CityApp.Services;
 using Microsoft.Extensions.Logging;
 using System;
+using CityApp.ViewModels;
 
 namespace CityApp.Controllers
 {
@@ -54,8 +55,8 @@ namespace CityApp.Controllers
 			_storage.Create(model);
 			return CreatedAtAction("Get", model);
 		}
-		[HttpPost("cities/{id}", Name ="Get")]
-		[HttpPost("api/city/{id}", Name = "ApiGet")]
+		[HttpGet("cities/{id}", Name ="Get")]
+		[HttpGet("api/city/{id}", Name = "ApiGet")]
 		public IActionResult Get (Guid id)
 		{
 			if (id == Guid.Empty)
@@ -71,6 +72,30 @@ namespace CityApp.Controllers
 			}
 			return Ok(new DetailCityViewModel(city));
 		}
-
-	}
+        [HttpDelete("cities/{id}")]
+        [HttpDelete("api/city/{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                _logger.LogWarning("Invalid id specifies");
+                return BadRequest();
+            }
+            _storage.Delete(id);
+            return Ok();
+        }
+        [HttpPut("cities")]
+        [HttpPut("api/city")]
+        public IActionResult Update([FromBody] UpdateCityViewModel city)
+        {
+            if (city.Id == Guid.Empty)
+            {
+                _logger.LogWarning("Invalid id specifies");
+                return BadRequest();
+            }
+            var model = new City(city.Name, city.Description, city.Population);
+            _storage.Update(model,city.Id);
+            return Ok();
+        }
+    }
 }
