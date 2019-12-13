@@ -12,9 +12,9 @@ namespace CityApp.Models
 
 		public City(string name,
 			string description,
-			int population)
+			int population, Guid? id = default)
 		{
-			Id = Guid.NewGuid();
+			Id = id ?? Guid.NewGuid();
 			Name = name;
 			Description = description;
 			Population = population;

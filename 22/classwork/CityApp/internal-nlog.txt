@@ -90,3 +90,28 @@
 2019-12-10 01:41:20.3289 Info Adding target File Target[ownFile-web]
 2019-12-10 01:41:20.3369 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\nlog.config...
 2019-12-10 01:41:20.3539 Info Found 45 configuration items
+2019-12-13 19:51:16.4794 Info Message Template Auto Format enabled
+2019-12-13 19:51:16.9694 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-13 19:51:19.1096 Info Adding target File Target[allfile]
+2019-12-13 19:51:19.8506 Info Adding target File Target[ownFile-web]
+2019-12-13 19:51:19.8586 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2019-12-13 19:51:19.9546 Info Found 45 configuration items
+2019-12-13 19:51:59.2859 Info Logger closing down...
+2019-12-13 19:51:59.2859 Info Closing old configuration.
+2019-12-13 19:51:59.3489 Info Logger has been closed down.
+2019-12-13 19:54:52.0487 Info Shutting down logging...
+2019-12-13 19:54:52.0697 Info Logger has been shut down.
+2019-12-13 19:55:27.9208 Info Message Template Auto Format enabled
+2019-12-13 19:55:27.9298 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-13 19:55:28.0368 Info Adding target File Target[allfile]
+2019-12-13 19:55:28.0458 Info Adding target File Target[ownFile-web]
+2019-12-13 19:55:28.0548 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2019-12-13 19:55:28.0728 Info Found 45 configuration items
+2019-12-13 19:57:47.7448 Info Shutting down logging...
+2019-12-13 19:57:47.7658 Info Logger has been shut down.
+2019-12-13 20:01:08.8433 Info Message Template Auto Format enabled
+2019-12-13 20:01:08.9173 Info Loading assembly: NLog.Web.AspNetCore
+2019-12-13 20:01:09.3933 Info Adding target File Target[allfile]
+2019-12-13 20:01:09.4463 Info Adding target File Target[ownFile-web]
+2019-12-13 20:01:09.4463 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2019-12-13 20:01:09.4763 Info Found 45 configuration items
