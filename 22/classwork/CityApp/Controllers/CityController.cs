@@ -81,21 +81,35 @@ namespace CityApp.Controllers
                 _logger.LogWarning("Invalid id specifies");
                 return BadRequest();
             }
-            _storage.Delete(id);
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+			_storage.Delete(id);
             return Ok();
         }
-        [HttpPut("cities")]
-        [HttpPut("api/city")]
-        public IActionResult Update([FromBody] UpdateCityViewModel city)
+        [HttpPut("cities/{id}")]
+        [HttpPut("api/city/{id}")]
+        public IActionResult Update([FromBody] UpdateCityViewModel city, Guid id)
         {
-            if (city.Id == Guid.Empty)
+            if (id == Guid.Empty)
             {
                 _logger.LogWarning("Invalid id specifies");
                 return BadRequest();
             }
-            var model = new City(city.Name, city.Description, city.Population);
-            _storage.Update(model,city.Id);
-            return Ok();
+			if (city == null)
+			{
+				_logger.LogWarning("City with id {0} is not found", id);
+				return NotFound();
+			}
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+			var model = new City(city.Name, city.Description, city.Population, id);
+            _storage.Update(model);
+			
+			return Ok();
         }
     }
 }

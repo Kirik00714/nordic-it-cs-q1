@@ -38,9 +38,9 @@ namespace CityApp.Services
         {
             _cities.Remove(_cities.Find(city => city.Id == id));
         }
-        public void Update(City city,Guid id)
+        public void Update(City city)
         {
-            _cities.Remove(_cities.Find(update => update.Id == id));
+            _cities.Remove(_cities.Find(update => update.Id == city.Id));
             _cities.Add(city);
         }
 
