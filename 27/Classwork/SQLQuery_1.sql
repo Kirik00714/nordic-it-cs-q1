@@ -1,0 +1,92 @@
+CREATE TABLE Employee(
+    Id INT NOT NULL,
+    Fullname VARCHAR(100) NOT NULL,
+    AddressId INT NOT NULL,
+    PositionId INT NOT NULL
+);
+
+CREATE Table [Address](
+    Id INT NOT NULL,
+    City VARCHAR(25) NOT NULL
+);
+CREATE TABLE Document(
+    Id INT NOT NULL,
+    TypeId INT NOT NULL,
+    Titles VARCHAR(50) NOT NULL,
+    Pages INT NOT NULL
+);
+CREATE TABLE Position(
+    Id INT NOT NULL,
+    Title VARCHAR(50) NOT NULL
+);
+CREATE TABLE DocumentType(
+    Id INT NOT NULL,
+    Title VARCHAR(100) NOT NULL
+);
+CREATE TABLE DocumentStatus(
+    Id INT NOT NULL,
+    RenderId INT NOT NULL,
+    ReceiverId INT NOT NULL,
+    DocumentId INT NOT NULL,
+    [Status] VARCHAR(20) NOT NULL,
+    [DateTime] DATETIME2 NOT NULL
+);
+
+SELECT * FROM INFORMATION_SCHEMA.TABLES;
+
+ALTER TABLE DocumentStatus
+    ADD CONSTRAINT PK_DocumentStatus PRIMARY KEY CLUSTERED(Id);
+ALTER TABLE DocumentType
+    ADD CONSTRAINT PK_DocumentType PRIMARY KEY CLUSTERED(Id);
+ALTER TABLE Position
+    ADD CONSTRAINT PK_Position PRIMARY KEY CLUSTERED(Id);
+ALTER TABLE Document
+    ADD CONSTRAINT PK_Document PRIMARY KEY CLUSTERED(Id);
+ALTER TABLE [Address]
+    ADD CONSTRAINT PK_Address PRIMARY KEY CLUSTERED(Id);
+ALTER TABLE Employee
+    ADD CONSTRAINT PK_Employee PRIMARY KEY CLUSTERED(Id);
+
+DROP TABLE  DocumentStatus;
+DROP TABLE  DocumentType;
+DROP TABLE  Position;
+DROP TABLE  Document;
+DROP TABLE  [Address];
+DROP TABLE  Employee;
+
+ALTER TABLE Employee
+    ADD CONSTRAINT FK_PositionId_Position FOREIGN KEY (PositionId)
+    REFERENCES Position (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;
+
+ALTER TABLE Employee
+    ADD CONSTRAINT FK_AddressId_Address FOREIGN KEY (AddressId)
+    REFERENCES [Address] (Id)
+    ON DELETE NO ACTION
+    ON UPDATE No ACTION;
+
+ALTER TABLE Document 
+    ADD CONSTRAINT FK_DocumentTypeId_DocumentType FOREIGN KEY (TypeId)
+    REFERENCES DocumentType (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;
+
+ALTER TABLE DocumentStatus 
+    ADD CONSTRAINT FK_RenserId_Employee FOREIGN KEY (RenderId)
+    REFERENCES Employee (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;
+
+ALTER TABLE DocumentStatus 
+    ADD CONSTRAINT FK_ReceiverId_Employee FOREIGN KEY (ReceiverId)
+    REFERENCES Employee (Id)
+    ON DELETE NO ACTION
+    ON UPDATE No ACTION;
+
+ALTER TABLE DocumentStatus 
+    ADD CONSTRAINT FK_DocumentId_Document FOREIGN KEY (DocumentId)
+    REFERENCES Document (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;                 
+
