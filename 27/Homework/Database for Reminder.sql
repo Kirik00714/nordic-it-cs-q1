@@ -1,0 +1,58 @@
+CREATE TABLE MessageStatus(
+    Id INT NOT NULL,
+    ContactId INT NOT NULL,
+    MessageId INT NOT NULL,
+    StatusId INT NOT NULL,
+    [DateTime] DATETIME2 NOT NULL
+);
+
+CREATE TABLE Empolyee(
+    Id INT NOT NULL,
+    Nickname VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE [Message] (
+    Id INT NOT NULL,
+    [Text] VARCHAR (2048) NOT NULL,
+    Words INT NOT NULL
+);
+
+CREATE TABLE [Status] (
+    Id INT NOT NULL,
+    [Status] VARCHAR (20) NOT NULL
+);
+
+SELECT * FROM MessageStatus;
+
+ALTER TABLE MessageStatus
+    ADD CONSTRAINT PK_MessageStatus PRIMARY KEY CLUSTERED (Id);
+ALTER TABLE Empolyee
+    ADD CONSTRAINT PK_Empolyee PRIMARY KEY CLUSTERED (Id);
+ALTER TABLE [Message]
+    ADD CONSTRAINT PK_Message PRIMARY KEY CLUSTERED (Id);
+ALTER TABLE [Status]
+    ADD CONSTRAINT PK_Status PRIMARY KEY CLUSTERED (Id);
+
+DROP TABLE MessageStatus;
+DROP TABLE Empolyee;
+DROP TABLE [Message];
+DROP TABLE [Status];
+
+ALTER TABLE MessageStatus
+    ADD CONSTRAINT FK_ContactId_Employee FOREIGN KEY (ContactId)
+    REFERENCES Employee (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;
+
+ALTER TABLE MessageStatus
+    ADD CONSTRAINT FK_MessageId_Message FOREIGN KEY (MessageId)
+    REFERENCES [Message] (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;
+
+ALTER TABLE MessageStatus
+    ADD CONSTRAINT FK_StatusId_Status FOREIGN KEY (StatusId)
+    REFERENCES [Status] (Id)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE;
+
