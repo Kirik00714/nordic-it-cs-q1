@@ -1,7 +1,6 @@
 CREATE TABLE MessageStatus(
     Id INT NOT NULL,
     ContactId INT NOT NULL,
-    MessageId INT NOT NULL,
     StatusId INT NOT NULL,
     [DateTime] DATETIME2 NOT NULL
 );
