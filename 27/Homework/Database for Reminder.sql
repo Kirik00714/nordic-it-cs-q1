@@ -6,15 +6,9 @@ CREATE TABLE MessageStatus(
     [DateTime] DATETIME2 NOT NULL
 );
 
-CREATE TABLE Empolyee(
+CREATE TABLE Contact(
     Id INT NOT NULL,
     Nickname VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE [Message] (
-    Id INT NOT NULL,
-    [Text] VARCHAR (2048) NOT NULL,
-    Words INT NOT NULL
 );
 
 CREATE TABLE [Status] (
@@ -26,27 +20,16 @@ SELECT * FROM MessageStatus;
 
 ALTER TABLE MessageStatus
     ADD CONSTRAINT PK_MessageStatus PRIMARY KEY CLUSTERED (Id);
-ALTER TABLE Empolyee
-    ADD CONSTRAINT PK_Empolyee PRIMARY KEY CLUSTERED (Id);
-ALTER TABLE [Message]
-    ADD CONSTRAINT PK_Message PRIMARY KEY CLUSTERED (Id);
+ALTER TABLE Contact
+    ADD CONSTRAINT PK_Contact PRIMARY KEY CLUSTERED (Id);
 ALTER TABLE [Status]
     ADD CONSTRAINT PK_Status PRIMARY KEY CLUSTERED (Id);
 
-DROP TABLE MessageStatus;
-DROP TABLE Empolyee;
-DROP TABLE [Message];
-DROP TABLE [Status];
+
 
 ALTER TABLE MessageStatus
-    ADD CONSTRAINT FK_ContactId_Employee FOREIGN KEY (ContactId)
-    REFERENCES Employee (Id)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE;
-
-ALTER TABLE MessageStatus
-    ADD CONSTRAINT FK_MessageId_Message FOREIGN KEY (MessageId)
-    REFERENCES [Message] (Id)
+    ADD CONSTRAINT FK_ContactId_Contact FOREIGN KEY (ContactId)
+    REFERENCES Contact (Id)
     ON DELETE NO ACTION
     ON UPDATE CASCADE;
 
@@ -56,3 +39,6 @@ ALTER TABLE MessageStatus
     ON DELETE NO ACTION
     ON UPDATE CASCADE;
 
+DROP TABLE MessageStatus;
+DROP TABLE Contact;
+DROP TABLE [Status];
