@@ -39,13 +39,6 @@ namespace CityApp.Controllers
 			{
 				return BadRequest();
 			}
-			if (!ModelState.IsValid)
-			{
-				ModelState
-					.Select(pair => new ValidationErrorViewModel(pair.Key, pair.Value)).ToArray();
-
-				return BadRequest();
-			}
 			var model = new City(
 				city.Name,
 				city.Description,
@@ -81,9 +74,11 @@ namespace CityApp.Controllers
                 _logger.LogWarning("Invalid id specifies");
                 return BadRequest();
             }
-			if (!ModelState.IsValid)
+			var city = _storage.GetById(id);
+			if (city == null)
 			{
-				return BadRequest();
+				_logger.LogWarning("City with id {0} is not found", id);
+				return NotFound();
 			}
 			_storage.Delete(id);
             return Ok();
@@ -97,10 +92,16 @@ namespace CityApp.Controllers
                 _logger.LogWarning("Invalid id specifies");
                 return BadRequest();
             }
-			if (city == null)
+			var cityId = _storage.GetById(id);
+			if (cityId == null)
 			{
 				_logger.LogWarning("City with id {0} is not found", id);
 				return NotFound();
+			}
+			if (city == null)
+			{
+				_logger.LogWarning("City with id {0} is not found", id);
+				return BadRequest();
 			}
 			if (!ModelState.IsValid)
 			{

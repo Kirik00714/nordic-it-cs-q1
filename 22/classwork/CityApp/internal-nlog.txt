@@ -166,3 +166,35 @@
 2019-12-16 23:36:07.2476 Info Adding target File Target[ownFile-web]
 2019-12-16 23:36:07.2696 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
 2019-12-16 23:36:07.2876 Info Found 45 configuration items
+2020-01-09 15:22:42.2788 Info Message Template Auto Format enabled
+2020-01-09 15:22:42.3728 Info Loading assembly: NLog.Web.AspNetCore
+2020-01-09 15:22:42.5718 Info Adding target File Target[allfile]
+2020-01-09 15:22:42.6068 Info Adding target File Target[ownFile-web]
+2020-01-09 15:22:42.6158 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2020-01-09 15:22:42.6378 Info Found 45 configuration items
+2020-01-09 15:23:19.0459 Info Message Template Auto Format enabled
+2020-01-09 15:23:19.3849 Info Loading assembly: NLog.Web.AspNetCore
+2020-01-09 15:23:26.1723 Info Adding target File Target[allfile]
+2020-01-09 15:23:26.2233 Info Adding target File Target[ownFile-web]
+2020-01-09 15:23:26.2323 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2020-01-09 15:23:26.2523 Info Found 45 configuration items
+2020-01-09 15:28:42.8004 Info Message Template Auto Format enabled
+2020-01-09 15:28:42.8244 Info Loading assembly: NLog.Web.AspNetCore
+2020-01-09 15:28:43.1035 Info Adding target File Target[allfile]
+2020-01-09 15:28:43.1035 Info Adding target File Target[ownFile-web]
+2020-01-09 15:28:43.1205 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2020-01-09 15:28:43.1385 Info Found 45 configuration items
+2020-01-09 15:30:20.1220 Info Message Template Auto Format enabled
+2020-01-09 15:30:20.1310 Info Loading assembly: NLog.Web.AspNetCore
+2020-01-09 15:30:20.2090 Info Adding target File Target[allfile]
+2020-01-09 15:30:20.2090 Info Adding target File Target[ownFile-web]
+2020-01-09 15:30:20.2290 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2020-01-09 15:30:20.2490 Info Found 45 configuration items
+2020-01-09 15:32:03.1419 Info Shutting down logging...
+2020-01-09 15:32:03.2079 Info Logger has been shut down.
+2020-01-09 15:44:15.1258 Info Message Template Auto Format enabled
+2020-01-09 15:44:15.2998 Info Loading assembly: NLog.Web.AspNetCore
+2020-01-09 15:44:16.7509 Info Adding target File Target[allfile]
+2020-01-09 15:44:16.9129 Info Adding target File Target[ownFile-web]
+2020-01-09 15:44:16.9219 Info Configured from an XML element in C:\Users\Андрей\Desktop\nordic-it-cs-q1\22\classwork\CityApp\bin\Debug\netcoreapp2.2\NLog.config...
+2020-01-09 15:44:16.9629 Info Found 45 configuration items
