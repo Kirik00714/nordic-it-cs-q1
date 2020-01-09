@@ -23,13 +23,14 @@ namespace Events
             {
                 throw new ArgumentNullException(nameof(data));
             }
-            File.AppendAllText(fileName, String.Join(",", data));
-            for (int i = 0; i < data.Length; i++)
+            var file = File.OpenWrite(fileName);
+            for (int i = 1; i < data.Length; i++)
             {
+                file.WriteByte(data[i]);
                 float percentage = default;
                 if (percentage <= ((i + 1) / (float)data.Length))
                 {
-                    percentage = ((i + 1) * percentageToFireEvent)*100;
+                    percentage = i * percentageToFireEvent * 100;
                     if (percentage < 100)
                     {
                         
@@ -38,8 +39,6 @@ namespace Events
                 }
             }
             WritingCompleted?.Invoke(this, null);
-
-            
         }
     }
 }

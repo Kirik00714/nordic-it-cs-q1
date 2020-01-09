@@ -12,7 +12,7 @@ namespace Events
             filewriterwithprogress.WritingCompleted += Filewriterwithprogress_WritingCompleted;
             var data = new byte[10];
             new Random().NextBytes(data);
-            filewriterwithprogress.WriteBytes("File.txt", data, 0.15f);
+            filewriterwithprogress.WriteBytes("File.txt", data, 0.1f);
             Console.ReadKey();
         }
 

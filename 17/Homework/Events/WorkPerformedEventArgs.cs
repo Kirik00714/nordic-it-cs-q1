@@ -4,12 +4,12 @@ namespace Events
 {
     public class WorkPerformedEventArgs : EventArgs
     {
-        public WorkPerformedEventArgs(float percentage)
+        public WorkPerformedEventArgs(double percentage)
         {
             
             this.percentage = percentage;
         }
-        public float percentage { get; set; }
+        public double percentage { get; set; }
 
     }
 }
