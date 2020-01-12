@@ -23,7 +23,7 @@ namespace Events
             {
                 throw new ArgumentNullException(nameof(data));
             }
-            var file = File.OpenWrite(fileName);
+            using var file = File.OpenWrite(fileName);
             for (int i = 1; i < data.Length; i++)
             {
                 file.WriteByte(data[i]);
