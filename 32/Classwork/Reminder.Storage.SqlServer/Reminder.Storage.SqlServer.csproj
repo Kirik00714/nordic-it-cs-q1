@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Reminder.Storage\Reminder.Storage.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Scripts\CreateTableContact.sql" />
+    <None Remove="Scripts\CreateContactTable %28copy%29.sql" />
+    <None Remove="Scripts\CreateReminderItemTable.txt" />
+    <None Remove="Scripts\CreateReminderItemStatusTable %28copy%29.sql" />
+    <None Remove="Scripts\AddReminderItem.sql" />
+    <None Remove="Scripts\InsertReminderItemStatusLines.sql" />
+    <None Remove="Scripts\FindReminder.sql" />
+    <None Remove="Scripts\FindReminder %28copy%29.sql" />
+    <None Remove="Scripts\FindReminderItem %28copy%29.sql" />
+    <None Remove="Scripts\FindReminderItems %28copy%29.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\CreateContactTable.sql" />
+    <EmbeddedResource Include="Scripts\CreateReminderItemStatusTable.sql" />
+    <EmbeddedResource Include="Scripts\CreateReminderItemTable.sql" />
+    <EmbeddedResource Include="Scripts\AddReminderItem.sql" />
+    <EmbeddedResource Include="Scripts\InsertReminderItemStatusLines.sql" />
+    <EmbeddedResource Include="Scripts\FindReminderItem.sql" />
+    <EmbeddedResource Include="Scripts\UpdateReminderItem.sql" />
+    <EmbeddedResource Include="Scripts\FindReminderItems.sql" />
+    <EmbeddedResource Include="Scripts\FindReminderItemCount.sql" />
+  </ItemGroup>
+</Project>
