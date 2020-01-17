@@ -68,10 +68,15 @@ namespace Reminder.Storage.Memory
 
         public void Update(ReminderItem item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
             if (!_map.ContainsKey(item.Id))
             {
                 throw new ArgumentException($"Не найден элемент с ключом {item.Id}");
             }
+            
             _map[item.Id] = item;
         }
     }
