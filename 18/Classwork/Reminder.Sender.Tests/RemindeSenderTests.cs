@@ -1,8 +1,8 @@
 using NUnit.Framework;
 
-namespace NUnitTestProject3
+namespace Reminder.Sender.Tests
 {
-    public class Tests
+    public class RemindeSenderTests
     {
         [SetUp]
         public void Setup()

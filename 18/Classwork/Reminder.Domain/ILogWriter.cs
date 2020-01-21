@@ -7,10 +7,8 @@ namespace Reminder.Domain
 {
     interface ILogWriter
     {
-        void LogCreated(string message);
-        void LogReady(string message);
-        void LogSent(string message);
-        void LogFailed(string message);
+     
+        void LogWriter(string message);
 
     }
 }

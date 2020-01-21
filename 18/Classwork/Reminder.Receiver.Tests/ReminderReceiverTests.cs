@@ -1,11 +1,11 @@
 using NUnit.Framework;
-using Reminder.Receiver;
 using System;
 
-namespace Reminder.Received.Test
+namespace Reminder.Receiver.Tests
 {
-    public class ReminderReceivedTest
+    public class ReminderReceiverTests
     {
+
         [Test]
         public void WhenMessage_IfOneMessageHasNoFieldsFilledIn_ShouldEmptyString()
         {
@@ -17,7 +17,7 @@ namespace Reminder.Received.Test
         public void WhenMessage_IfOneMessageHasNoFieldsFilledIn_ShouldEmptyText()
         {
             var receiver = new MessageReceivedEventArgs("123", new Message("some text", DateTimeOffset.UtcNow));
-            var receiver1 = new MessageReceivedEventArgs("123", new Message(null,DateTimeOffset.UtcNow));
+            var receiver1 = new MessageReceivedEventArgs("123", new Message(null, DateTimeOffset.UtcNow));
             Assert.AreNotEqual(receiver, receiver1);
         }
         [Test]
