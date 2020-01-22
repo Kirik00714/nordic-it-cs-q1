@@ -1,23 +1,7 @@
-SELECT ms.Id ,
-        c.Nickname,
-        ms.StatusId,
-        ms.[DateTime]
-FROM MessageStatus AS ms
-INNER JOIN Contact AS c
-    ON ms.ContactId = c.Id
+SELECT d.TypeId,d.Titles,d.Pages,dt.Title,ds.Id,ds.RenderId,ds.ReceiverId,ds.DocumentId,ds.Status,ds.DateTime
+FROM Document AS d
+ JOIN DocumentType AS dt
+        ON d.TypeId = dt.Id
+    JOIN DocumentStatus AS ds
+        ON ds.DocumentId = d.Id
 
-SELECT ms.Id ,
-        c.Nickname,
-        ms.StatusId,
-        ms.[DateTime]
-FROM MessageStatus AS ms
-RIGHT JOIN Contact AS c
-    ON ms.ContactId = c.Id
-
-SELECT ms.Id ,
-        c.Nickname,
-        ms.StatusId,
-        ms.[DateTime]
-FROM MessageStatus AS ms
-LEFT JOIN Contact AS c
-    ON ms.ContactId = c.Id

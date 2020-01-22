@@ -45,8 +45,9 @@ EXEC pr_CreateStatus @p_Status = 'Create';
 SELECT * FROM [Status];
 
 CREATE OR ALTER PROCEDURE pr_CreateMessageStatus(
-    @p_ContactName NVARCHAR (250) ,
-    @p_Status NVARCHAR (250)
+    @p_ContactName NVARCHAR (250),
+    @p_Status NVARCHAR (250),
+    @p_Message VARCHAR(2048)
 )
 AS
 BEGIN
@@ -55,6 +56,7 @@ BEGIN
     DECLARE @StatusId UNIQUEIDENTIFIER;
     DECLARE @MessageStatusId UNIQUEIDENTIFIER = NEWID();
     DECLARE @DateTime DATETIME2 = GETUTCDATE();
+    DECLARE @Message VARCHAR(2048) = @p_Message;
     
     
         EXEC pr_CreateContact @p_ContactName = @p_ContactName,
@@ -62,13 +64,15 @@ BEGIN
         EXEC pr_CreateStatus @p_Status = @p_Status,
         @p_StatusId = @StatusId OUTPUT;
 
-    INSERT INTO MessageStatus (Id, ContactId,StatusId, [DateTime])
-    VALUES (@MessageStatusId, @ContactId,@StatusId,@DateTime);
+    INSERT INTO MessageStatus (Id, ContactId,StatusId,[Message], [DateTime])
+    VALUES (@MessageStatusId, @ContactId,@StatusId,@Message,@DateTime);
 
 END;
 
-EXEC pr_MessageStatus
+EXEC pr_CreateMessageStatus
 @p_ContactName = 'Kirill',
-@p_Status = 'Create';
+@p_Status = 'Create',
+@p_Message = 'Some text';
+
 
 SELECT * FROM MessageStatus;

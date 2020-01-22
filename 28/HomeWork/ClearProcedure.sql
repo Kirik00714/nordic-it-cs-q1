@@ -1,0 +1,23 @@
+CREATE OR ALTER PROCEDURE [sp_ClearContact]
+AS 
+BEGIN
+    SET NOCOUNT ON;
+    DROP TABLE [Contact] 
+   
+END
+
+CREATE OR ALTER PROCEDURE [sp_ClearStatus]
+AS 
+BEGIN
+    SET NOCOUNT ON;
+    DROP TABLE [Status] 
+   
+END
+
+CREATE OR ALTER PROCEDURE [sp_ClearMessageStatus]
+AS 
+BEGIN
+    SET NOCOUNT ON;
+    DROP TABLE [MessageStatus] 
+   
+END
