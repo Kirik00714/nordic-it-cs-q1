@@ -144,6 +144,20 @@ namespace Reminder.Storage.SqlServer.Tests
 				storage.Update(item)
 			);
 		}
+		[Test]
+		public void WhenDelete_IfItemNotExists_ShouldThrow()
+		{
+			// Arrange
+			
+			var storage = new ReminderStorage(ConnectionString);
+
+			// Act-Assert
+			Assert.Throws<ReminderItemNotFoundException>(() =>
+				storage.Delete(Guid.NewGuid())
+			);
+		}
+		
+
 
 		// FindBy
 		// 1. Ввыполняется фильтрация

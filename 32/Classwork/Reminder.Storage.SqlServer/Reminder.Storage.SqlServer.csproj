@@ -13,9 +13,6 @@
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Scripts\CreateTableContact.sql" />
     <None Remove="Scripts\CreateContactTable %28copy%29.sql" />
     <None Remove="Scripts\CreateReminderItemTable.txt" />

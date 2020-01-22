@@ -33,6 +33,10 @@ namespace Reminder.Storage.SqlServer
 
 		public static string UpdateReminderItem =>
 			ReadScript(nameof(UpdateReminderItem));
+		public static string DeleteReminderItem =>
+			ReadScript(nameof(DeleteReminderItem));
+		public static string ClearReminderItem =>
+			ReadScript(nameof(ClearReminderItem));
 
 		public static SqlConnection CreateConnection(string connectionString)
 		{

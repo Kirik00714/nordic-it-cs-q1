@@ -79,12 +79,23 @@ namespace Reminder.Storage.SqlServer
 
 		public void Delete(Guid id)
 		{
-			throw new NotImplementedException();
+			using var connection = Sql.CreateConnection(_connectionString);
+			using var command = connection.CreateProcedure(Sql.DeleteReminderItem);
+
+			command.Parameters.AddWithValue("@p_id", id);
+			var items = ExecuteReader(command);
+			if (items.Count == 0)
+			{
+				throw new ReminderItemNotFoundException(id);
+			}
+			
 		}
+
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			using var connection = Sql.CreateConnection(_connectionString);
+			using var command = connection.CreateProcedure(Sql.ClearReminderItem);
 		}
 
 		public PagedResult FindBy(ReminderItemFilter filter)
