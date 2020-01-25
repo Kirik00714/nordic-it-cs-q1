@@ -13,13 +13,15 @@ namespace ConsoleApp1
 
         public Address(City cityId, string addressName)
         {
-            CityId = cityId;
+            CityName = cityId;
             AddressName = addressName;
+            
         }
 
         public int Id { get; private set; }
-        public City CityId { get; private set; }
+        public City CityName { get; private set; }
         public string AddressName { get; private set; }
+        
         public ICollection<Contractor> Contractors { get; private set; }
     }
 }

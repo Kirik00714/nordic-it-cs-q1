@@ -42,8 +42,9 @@ namespace ConsoleApp1
         private void OnEntityModelCreating(EntityTypeBuilder<Address> entityTypeBuilder)
         {
             entityTypeBuilder.Property(_ => _.Id).ValueGeneratedOnAdd();
-            entityTypeBuilder.HasOne(_ => _.CityId).WithMany(_ => _.Addresss);
+            entityTypeBuilder.HasOne(_ => _.CityName).WithMany(_ => _.Addresss);
             entityTypeBuilder.Property(_ => _.AddressName).HasMaxLength(128);
+            
         }
         private void OnEntityModelCreating(EntityTypeBuilder<DocumentStatus> entityTypeBuilder)
         {
@@ -72,10 +73,10 @@ namespace ConsoleApp1
         private void OnEntityModelCreating(EntityTypeBuilder<Contractor> entityTypeBuilder)
         {
             entityTypeBuilder.Property(_ => _.Id).ValueGeneratedOnAdd();
-            entityTypeBuilder.Property(_ => _.FullName).HasMaxLength(128);
-            entityTypeBuilder.HasOne(_ => _.PositionId).WithMany(_ => _.Contractors);
+            entityTypeBuilder.Property(_ => _.Name).HasMaxLength(128);
+            entityTypeBuilder.HasOne(_ => _.PositionName).WithMany(_ => _.Contractors);
             entityTypeBuilder
-                .HasOne(_ => _.AddressId)
+                .HasOne(_ => _.AddressName)
                 .WithMany(_ => _.Contractors);
         }
         private void OnEntityModelCreating(EntityTypeBuilder<Position> entityTypeBuilder)

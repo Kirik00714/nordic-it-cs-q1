@@ -12,16 +12,16 @@ namespace ConsoleApp1
         }
         public Contractor(string fullName, Address addressId, Position positionId)
         {
-            AddressId = addressId;
-            PositionId = positionId;
-            FullName = fullName;
+            AddressName = addressId;
+            PositionName = positionId;
+            Name = fullName;
 
         }
 
         public int Id { get; private set; }
-        public string FullName { get; private set; }
-        public Address AddressId { get; private set; }
-        public Position PositionId { get; private set; }
+        public string Name { get; private set; }
+        public Address AddressName { get; private set; }
+        public Position PositionName { get; private set; }
 
         public ICollection<DocumentStatus> DocumentsSender { get; private set; }
         public ICollection<DocumentStatus> DocumentsReceiver { get; private set; }
