@@ -2,6 +2,6 @@
 AS 
 BEGIN
     SET NOCOUNT ON;
-    DROP TABLE [ReminderItem] 
+    TRUNCATE TABLE [ReminderItem] 
    
 END

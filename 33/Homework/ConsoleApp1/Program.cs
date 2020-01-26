@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -15,13 +17,23 @@ namespace ConsoleApp1
             var contractorSender = new Contractor("Иванов Иван Иванович", addressSender, positionSender);
             var contractorReceiver = new Contractor("Петров Петр Петрович", addressReceiver, positionReceiver);
             var documentStatus = new DocumentStatus(contractorSender, contractorReceiver, document, "Доставлено", DateTimeOffset.UtcNow);
-
+            
             using var context = new OnlineStoreContext();
             context.Database.EnsureCreated();
 
             context.DocumentStatuss.Add(documentStatus);
             context.SaveChanges();
             Console.WriteLine("Completed");
+
+            var documentStatuss = context.DocumentStatuss
+                .Include(_ => _.Receiver)
+                .ThenInclude(line => line.DocumentsReceiver)
+                .ToList();
+            foreach (var item in documentStatuss)
+            {
+                Console.WriteLine(item);
+            }
+            
         }
     }
 }

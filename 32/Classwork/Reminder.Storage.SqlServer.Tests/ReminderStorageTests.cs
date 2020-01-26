@@ -153,7 +153,7 @@ namespace Reminder.Storage.SqlServer.Tests
 
 			// Act-Assert
 			Assert.Throws<ReminderItemNotFoundException>(() =>
-				storage.Delete(Guid.NewGuid())
+				storage.Delete(Guid.Empty)
 			);
 		}
 		

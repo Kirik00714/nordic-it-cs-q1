@@ -60,7 +60,7 @@ namespace Reminder.Storage.SqlServer
 		public void Update(ReminderItem item)
 		{
 			using var connection = Sql.CreateConnection(_connectionString);
-			using var command = connection.CreateProcedure(Sql.UpdateReminderItem);
+			using var command = connection.CreateQuery(Sql.UpdateReminderItem);
 
 			command.Parameters.AddWithValue("@p_id", item.Id);
 			command.Parameters.AddWithValue("@p_status", (byte)item.Status);
@@ -80,14 +80,15 @@ namespace Reminder.Storage.SqlServer
 		public void Delete(Guid id)
 		{
 			using var connection = Sql.CreateConnection(_connectionString);
-			using var command = connection.CreateProcedure(Sql.DeleteReminderItem);
+			using var command = connection.CreateProcedure("sp_DeleteReminderItem");
 
 			command.Parameters.AddWithValue("@p_id", id);
-			var items = ExecuteReader(command);
-			if (items.Count == 0)
+			command.ExecuteNonQuery();
+			if (id == Guid.Empty)
 			{
 				throw new ReminderItemNotFoundException(id);
 			}
+			 
 			
 		}
 
@@ -95,7 +96,7 @@ namespace Reminder.Storage.SqlServer
 		public void Clear()
 		{
 			using var connection = Sql.CreateConnection(_connectionString);
-			using var command = connection.CreateProcedure(Sql.ClearReminderItem);
+			using var command = connection.CreateProcedure("sp_ClearReminderItem");
 		}
 
 		public PagedResult FindBy(ReminderItemFilter filter)
