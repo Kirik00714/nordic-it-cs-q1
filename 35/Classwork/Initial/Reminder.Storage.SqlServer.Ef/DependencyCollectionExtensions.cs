@@ -8,7 +8,9 @@ namespace Reminder.Storage.SqlServer.Ef
 		public static void AddReminderStorage(this IServiceCollection services, string connectionString)
 		{
 			services.AddDbContext<ReminderStorageContext>(
-				options => options.UseSqlServer(connectionString)
+				options => options.UseSqlServer(connectionString),
+				ServiceLifetime.Transient,
+				ServiceLifetime.Transient
 			);
 			services.AddTransient<IReminderStorage, ReminderStorage>();
 		}
