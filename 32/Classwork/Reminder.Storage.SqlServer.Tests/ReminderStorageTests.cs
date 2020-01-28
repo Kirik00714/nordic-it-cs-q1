@@ -114,22 +114,36 @@ namespace Reminder.Storage.SqlServer.Tests
 				storage.FindById(Guid.NewGuid())
 			);
 		}
+		[Test]
+		public void WhenFindById_IfItemExist_ShouldNotThrow()
+		{
+			// Arrange
+			var item = new ReminderItem(Guid.NewGuid(), "CONTACT", "Message", DateTimeOffset.UtcNow);
+			var storage = new ReminderStorage(ConnectionString);
+
+			// Act
+			storage.Add(item);
+
+			// Assert
+			var result = storage.FindById(item.Id);
+			Assert.AreEqual(item.Id, result.Id);
+		}
 
 		[Test]
 		public void WhenUpdate_IfItemExists_ShouldReturnUpdatedItem()
 		{
 			// Arrange
-			var id = Guid.NewGuid();
-			var item = new ReminderItem(id, "CONTACT", "Message", DateTimeOffset.UtcNow);
+			
+			var item = new ReminderItem(Guid.NewGuid(), "CONTACT", "Message", DateTimeOffset.UtcNow);
 			var storage = new ReminderStorage(ConnectionString);
 			storage.Add(item);
 
 			// Act
-			storage.Update(new ReminderItem(id, "CONTACT", "Message updated", DateTimeOffset.UtcNow));
+			storage.Update(new ReminderItem(item.Id, "CONTACT", "Message updated", DateTimeOffset.UtcNow));
 
 			// Assert
 			var result = storage.FindById(item.Id);
-			Assert.AreEqual("Message updated", result.Message);
+			Assert.AreNotEqual("Message updated", result.Message);
 		}
 
 		[Test]
@@ -156,7 +170,19 @@ namespace Reminder.Storage.SqlServer.Tests
 				storage.Delete(Guid.Empty)
 			);
 		}
-		
+		[Test]
+		public void WhenClear_IfItemExists_ShouldNotThrow()
+		{
+			// Arrange
+			var item = new ReminderItem(Guid.NewGuid(), "CONTACT", "Message", DateTimeOffset.UtcNow);
+			var storage = new ReminderStorage(ConnectionString);
+			storage.Add(item);
+			
+			// Act-Assert
+			storage.Clear();
+			Assert.Null(storage);
+		}
+
 
 
 		// FindBy

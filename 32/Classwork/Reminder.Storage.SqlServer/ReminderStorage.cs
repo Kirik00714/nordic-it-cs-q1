@@ -97,6 +97,8 @@ namespace Reminder.Storage.SqlServer
 		{
 			using var connection = Sql.CreateConnection(_connectionString);
 			using var command = connection.CreateProcedure("sp_ClearReminderItem");
+			command.ExecuteNonQuery();
+			
 		}
 
 		public PagedResult FindBy(ReminderItemFilter filter)
