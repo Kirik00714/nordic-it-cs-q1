@@ -87,7 +87,7 @@ namespace ConsoleApp1
         private void OnEntityModelCreating(EntityTypeBuilder<City> entityTypeBuilder)
         {
             entityTypeBuilder.Property(_ => _.Id).ValueGeneratedOnAdd();
-            entityTypeBuilder.Property(_ => _.Name).HasMaxLength(256);
+            entityTypeBuilder.Property(_ => _.FullName).HasMaxLength(256);
         }
     }
 }

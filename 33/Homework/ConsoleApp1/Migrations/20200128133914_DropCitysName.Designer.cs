@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsoleApp1.Migrations
 {
     [DbContext(typeof(OnlineStoreContext))]
-    [Migration("20200125200708_RenameContractorName")]
-    partial class RenameContractorName
+    [Migration("20200128133914_DropCitysName")]
+    partial class DropCitysName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,9 +27,6 @@ namespace ConsoleApp1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AddressIndex")
-                        .HasColumnType("int");
 
                     b.Property<string>("AddressName")
                         .HasColumnType("nvarchar(128)")
@@ -52,7 +49,7 @@ namespace ConsoleApp1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 

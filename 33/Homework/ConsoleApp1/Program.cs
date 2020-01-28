@@ -19,7 +19,7 @@ namespace ConsoleApp1
             var documentStatus = new DocumentStatus(contractorSender, contractorReceiver, document, "Доставлено", DateTimeOffset.UtcNow);
             
             using var context = new OnlineStoreContext();
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
 
             context.DocumentStatuss.Add(documentStatus);
             context.SaveChanges();

@@ -14,11 +14,13 @@ namespace ConsoleApp1
         public City( string name)
         {
             
-            Name = name;
+            
+            FullName = name;
         }
 
         public int Id { get; private set; }
-        public string Name { get; private set; }
+        
+        public string FullName { get; private set; }
         public ICollection<Address> Addresss { get; private set; }
     }
 }
