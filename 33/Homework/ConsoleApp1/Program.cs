@@ -25,14 +25,7 @@ namespace ConsoleApp1
             context.SaveChanges();
             Console.WriteLine("Completed");
 
-            var documentStatuss = context.DocumentStatuss
-                .Include(_ => _.Receiver)
-                .ThenInclude(line => line.DocumentsReceiver)
-                .ToList();
-            foreach (var item in documentStatuss)
-            {
-                Console.WriteLine(item);
-            }
+            
             
         }
     }
