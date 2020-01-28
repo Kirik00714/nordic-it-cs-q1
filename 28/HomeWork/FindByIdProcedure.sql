@@ -1,46 +1,22 @@
-CREATE OR ALTER PROCEDURE [sp_FindByIdContact] (
-    @p_id AS UNIQUEIDENTIFIER
+CREATE OR ALTER PROCEDURE [sp_FindByReminderItem] (
+    @p_status AS TINYINT
+    @p_datetime AS DATETIMEOFFSET
 )
 AS 
 BEGIN
     SET NOCOUNT ON;
-    
+    DECLARE @datetime DATETIMEOFFSET;
+    DECLARE @status TINYINT
     SELECT 
-        Contact.Id,
-        Contact.Nickname
-    FROM [Contact] 
-    WHERE Contact.Id = @p_id 
+        RI.Id,
+        C.Login,
+        RI.StatusId,
+        RI.DatetimeUtc,
+        RI.Message
+    FROM [ReminderItem]  RI
+    JOIN [Contact] C
+        ON RI.ContactId = C.Id
+        WHERE @datetime =  @p_datetime AND @status = @p_status
+    ORDER BY RI.DatetimeUtc 
 END
 
-EXEC [sp_FindByIdContact] @p_id = d5120178-4b71-4fa8-869f-af0118b137b1;
-
-CREATE OR ALTER PROCEDURE [sp_FindByIdStatus] (
-    @p_id AS UNIQUEIDENTIFIER
-)
-AS 
-BEGIN
-    SET NOCOUNT ON;
-    
-    SELECT 
-        [Status].Id,
-        [Status].Nickname
-    FROM [Status] 
-    WHERE [Status].Id = @p_id 
-END
-
-CREATE OR ALTER PROCEDURE [sp_FindByIdMessageStatus] (
-    @p_id AS UNIQUEIDENTIFIER
-)
-AS 
-BEGIN
-    SET NOCOUNT ON;
-    
-    SELECT 
-        MessageStatus.Id,
-    MessageStatus.ContactId,
-    MessageStatus.StatusId,
-    MessageStatus.[Message],
-    MessageStatus.[DateTime]
-    FROM [MessageStatus] 
-    WHERE [MessageStatus].Id = @p_id 
-END
