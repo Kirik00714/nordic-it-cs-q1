@@ -10,42 +10,44 @@ namespace test
     
     class Program
     {
-        static readonly List<string> Fred = new List<string>();
+        static readonly List<string> triplet = new List<string>();
         static void Main(string[] args)
         {
-
-            
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            
-            string text = @"C:\Users\Андрей\Desktop\nordic-it-cs-q1\test task\тестовое задание\текст.txt";
-            string[] line = File.ReadAllLines(text);
-            
-            for (int i = 0; i < line.Length; i++)
+            string text = @"C:\Users\Radmila\Desktop\nordic-it-cs-q1\test task\тестовое задание\текст.txt";
+            string[] masText = File.ReadAllLines(text);
+            for (int i = 0; i < masText.Length; i++)
             {
-                string[] mas = line[i].Split(' ', '.', ',','!','?');
+                string[] mas = masText[i].Split(' ', '.', ',','!','?');
                 for (int j = 0; j < mas.Length; j++)
                 {
-                    string s = mas[j].ToLower();
-                    for (int z = 0; z < s.Length - 2; z++)
+                    string words = mas[j].ToLower();
+                    for (int z = 0; z < words.Length - 2; z++)
                     {
-                        string ss = s.Substring(z, 3);
-                        Fred.Add(ss);
-                        
-                        
+                        string letters = words.Substring(z, 3);
+                        if (string.IsNullOrWhiteSpace(letters))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            triplet.Add(letters);
+                        }
                     }
                 }
                 
             }
+            Thread sort = new Thread(new ThreadStart(sortAndOutput));
+            sort.Start();
+            sort.Join();
             watch.Stop();
             Console.WriteLine($"Time is {watch.ElapsedMilliseconds} ms");
-            Thread myThread = new Thread(new ThreadStart(Order));
-            myThread.Start();
-            
+            Console.ReadKey();
         }
-        public static void Order()
+        public static void sortAndOutput()
         {
-            var res = from n in Fred
+            var result = from n in triplet
                       group n by n into g
                       let count = g.Count()
                       orderby count descending
@@ -54,10 +56,13 @@ namespace test
                           Letter = g.Key,
                           Count = count
                       };
-            foreach (var item in res.Take(10))
+            foreach (var item in result.Take(10))
             {
-                
                 Console.WriteLine(item);
+                if (Console.KeyAvailable)
+                {
+                    break;
+                }
             }
             
         }
